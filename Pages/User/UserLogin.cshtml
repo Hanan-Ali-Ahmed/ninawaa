@@ -1,0 +1,37 @@
+﻿@page
+@model Ninwa_Employee.Pages.User.UserLoginModel
+
+@{
+    Layout = "_LoginLayout";
+    ViewData["loginTitle"] = "تسجيل الدخول";
+}
+
+@{
+    if (TempData["FailedIsNotOpen"] != null)
+    {
+        <div class="alert alert-danger text-white font-weight-bold">
+            @TempData["FailedIsNotOpen"]
+        </div>
+    }
+    else
+    {
+        <form id="loginForm" method="post" onsubmit="onSubmit(event);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="input-group input-group-outline mb-3">
+                <input type="text" id="UserName" name="UserName" class="form-control p-3 fs-6 border border-dark" placeholder="اسم المستخدم">
+            </div>
+            <div class="input-group input-group-outline mb-3">
+                <input type="text" id="Password" name="Password" class="form-control fs-6 border border-dark p-3" placeholder="كلمة المرور">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-3 mb-0 fs-5">تسجيل دخول</button>
+            </div>
+        </form>
+
+        <!-- قسم رابط الفيديو التعليمي -->
+        <div class="text-center mt-4">
+            <a href="https://youtube.com/channel/UCosztAmRLuW-WCq-lkYzwww?si=vM7yQhxUWSlWovyG" target="_blank" class="border-bottom border-2 border-dark-blue text-dark-blue fw-bold" style="font-size:15px;">شرح طريقة التقديم للاستمارة </a>
+        </div>
+    }
+}

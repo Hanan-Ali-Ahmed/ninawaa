@@ -1,0 +1,39 @@
+﻿@page
+@model LoginModel
+
+@{
+    Layout = "_LoginLayout";
+
+    ViewData["loginTitle"] = "التسجيل كمسؤول";
+}
+
+<form id="account" method="post">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+    <h6 class="form-label fs-5 text-bolder text-dark">الايميل </h6>
+    <input asp-for="Input.Email" class="form-control mb-2 p-2" autocomplete="username" aria-required="true" placeholder="name@example.com" />
+    <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+
+    <h6 class="form-label fs-5  text-bolder text-dark">كلمة السر</h6>
+    <input asp-for="Input.Password" class="form-control mb-2 p-2" autocomplete="current-password" aria-required="true" placeholder="password" />
+    <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+    <div class="form-check my-3">
+        <input type="checkbox" class="form-check-input" id="pledgeCheckbox" asp-for="Input.RememberMe" />
+      تذكرني؟
+
+    </div>
+
+    <div>
+        <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">تسجيل الدخول</button>
+    </div>
+
+</form>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

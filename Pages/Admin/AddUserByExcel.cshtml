@@ -1,0 +1,142 @@
+@page
+@model Ninwa_Employee.Pages.Admin.AddUserByExcelModel
+@{
+    ViewData["Title"] = "Add Users by Excel";
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "اضافة  مستخدمين";
+}
+<h1>اضافة مستخدمين</h1>
+<div class="row">
+    @* add user by excel*@
+    <div class="col-md-12 mt-4">
+        <div class="card">
+            <div class="card-header pb-0 px-3">
+                <h4 class="mb-0">اضافة مستخدمين بواسطة ملف اكسل</h4>
+            </div>
+            <div class="card-body pt-4 p-3">
+                <form enctype="multipart/form-data" method="post" class=" p-4 mb-2 shadow bg-gray-200 border-radius-l" asp-page-handler="UploadExcel">
+                    <div class="form-group">
+                        <label  class="control-label fs-5  text-dark font-weight-bold">قم بأدراج ملف الاكسل من هنا</label>
+                        <div class="row">
+                            <div class="col-md-10 ">
+                        <input asp-for="ExcelFile" class="form-control border  border-dark p-2 mb-3" type="file" />
+                        
+                            </div>
+                            <div class="col-md-2 ">
+                                <button type="submit" class="btn btn-success w-75 fs-6">رفع الملف</button>
+                            </div>
+                    </div>
+                   </div>
+                    @{
+                        if (TempData["SuccessMessageForExcel"] != null)
+                        {
+                            <div class="alert alert-success text-white font-weight-bold w-25" id="successAlert">
+                                @TempData["SuccessMessageForExcel"]
+                            </div>
+                        }
+                    }
+
+                </form>
+              
+            </div>
+        </div>
+    </div>
+
+
+
+    @* update user (cardnumber)
+@*      
+        <div class="col-md-12 mt-4">
+            <div class="card">
+                <div class="card-header pb-0 px-3">
+                    <h4 class="mb-0">تحديث كلمة المرور</h4>
+            </div>
+            <div class="card-body pt-4 p-3">
+                <div class=" my-1 p-4 mb-2 bg-gray-200 border-radius-l shadow">
+                    <div asp-validation-summary="ModelOnly" class=" text-white font-weight-bold w-50 border border-0 
+                                                                    bg-danger shadow  fs-5 rounded mb-2"></div>
+                    <form method="post"> 
+                    <div class="form-group input-group-outline">
+                        <label class="control-label mb-2 fs-5 text-dark font-weight-bold">  الاسم الرباعي / اسم المستخدم</label>
+                        <div class="row">
+                        <div class="col-md-10 ">
+
+                           <input class="form-control  p-2 border  border-dark" name="UserNameOrName" placeholder="ابحث هنا ...." />   
+                                <span asp-validation-for="UserNameOrName" class="text-danger mb-3">هذا الحقل مطلوب</span> 
+
+                            </div>
+                        <div class="col-md-2 ">
+                                    <button type="submit" asp-page-handler="FindUser" class="btn btn-info  w-75 fs-6">بحث</button>
+                        </div>
+
+                           
+                        </div>
+                    </div>
+                    </form>
+ 
+                @if (Model.UserFound)
+                {
+                    <div class="alert alert-success mt-3 text-white font-weight-bold w-50">
+                        <strong> تم العثور على / </strong>  الاسم : @Model.FoundUserName, اسم المستخدم: @Model.FoundUserName
+                    </div>
+
+                    <form method="post">
+                        <input type="hidden" asp-for="UserName" />
+                        <div class="form-group">
+                            <label asp-for="OldMasterCardNumber" class="control-label mb-2 fs-5 text-dark font-weight-bold">كلمة المرور السابقة</label>
+                            <input asp-for="OldMasterCardNumber" class="form-control p-2 border  border-dark" />
+                            <span asp-validation-for="OldMasterCardNumber" class="text-danger"></span> 
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="NewMasterCardNumber" class="control-label mb-2 fs-5 text-dark font-weight-bold">كلمة المرور الجديدة</label>
+                            <input asp-for="NewMasterCardNumber" class="form-control p-2 border  border-dark" />
+                           
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="ConfirmMasterCardNumber" class="control-label mb-2 fs-5 text-dark font-weight-bold">تاكيد كلمة المرور الجديدة</label>
+                            <input asp-for="ConfirmMasterCardNumber" class="form-control p-2 border  border-dark" />
+                                
+                        </div>
+
+                        <button type="submit" asp-page-handler="UpdateUserCardNumder" class="btn btn-warning  mt-3  fs-6">تحديث كلمة المرور</button>
+                    </form>
+                }
+              
+                else if (Model.UserSearchAttempted)
+                {
+                        <div class="alert alert-danger mt-3 text-white font-weight-bold w-25">
+                          <strong>لم يتم العثور على المستخدم</strong>
+                                </div>
+                }
+                    @{
+                        if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert alert-success text-white font-weight-bold w-25" id="successAlert">
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+                    }
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ *@
+<script>
+    // Wait for the DOM to be fully loaded
+    document.addEventListener("DOMContentLoaded", function () {
+        // Find the alert element
+        var alert = document.getElementById("successAlert");
+
+        // If the alert exists, set a timeout to remove it after 5 seconds (5000 milliseconds)
+        if (alert) {
+            setTimeout(function () {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+    });
+</script>

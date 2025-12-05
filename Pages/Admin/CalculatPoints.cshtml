@@ -1,0 +1,177 @@
+﻿@* @page
+@model Ninwa_Employee.Pages.Admin.Calculator_PointsModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "احتساب النقاط";
+}
+<h1>احتساب النقاط</h1>
+
+<div class="container mt-5">
+    <form method="get">
+        <div class="row">
+            <div class="d-flex gap-1 flex-nowrap">
+            <div class="col-11">
+                <input type="text" name="searchTerm" class="form-control p-2 border border-dark" placeholder="ابحث هنا عن اسم المستخدم ...." value="@Model.SearchTerm" />
+        </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-info w-100  ">بحث</button>
+            </div>
+        </div>
+        </div>
+
+        
+    </form>
+       <form method="get" class="mb-4">
+        <div class="row">
+
+        <div class="col-md-1 col-12 my-1" style="font-size:9px">
+            <div class="form-group text-center text-center">
+                    <label asp-for="GenderId" class="control-label mb-2 text-dark text-bolder" style="height:44px">الجنس</label>
+                    <select asp-for="GenderId" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center" asp-items="ViewBag.GenderId" onchange="this.form.submit()">
+                    <option value="">الكل</option>
+                    
+                   
+                </select>
+            </div>
+        </div>
+            <div class="col-md-2 col-12 my-1">
+            <div class="form-group text-center">
+                    <label asp-for="MaritalStatusId" class="control-label mb-2 text-dark text-bolder" style="height:44px">الحالة الاجتماعية</label>
+                <select asp-for="MaritalStatusId" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select" asp-items="ViewBag.MaritalStatusId" onchange="this.form.submit()">
+                    <option value="">الكل</option>
+                   
+                </select>
+            </div>
+        </div>
+            <div class="col-md-2 col-12 my-1">
+            <div class="form-group text-center">
+                    <label asp-for="BirthplaceId" class="control-label mb-2 text-dark text-bolder" style="height:44px"> مسقط الرأس</label>
+                <select asp-for="BirthplaceId" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select" asp-items="ViewBag.BirthplaceId" onchange="this.form.submit()">
+                    <option value="">الكل</option>
+                   
+                </select>
+            </div>
+        </div>
+
+            <div class="col-md-2 col-12 my-1">
+            <div class="form-group text-center">
+                    <label asp-for="CurrentPlaceId" class="control-label mb-2 text-dark text-bolder" style="height:44px">أسم القضاء	</label>
+                <select asp-for="CurrentPlaceId" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select" asp-items="ViewBag.CurrentPlaceId" onchange="this.form.submit()">
+                    <option value="">الكل</option>
+                   
+                </select>
+            </div>
+        </div>
+
+            <div class="col-md-2 col-12 my-1">
+            <div class="form-group text-center">
+                    <label asp-for="CertificateId" class="control-label mb-2 text-dark text-bolder" style="height:44px">التحصيل الدراسي</label>
+                <select asp-for="CertificateId" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select" asp-items="ViewBag.CertificateId" onchange="this.form.submit()">
+                    <option value="">الكل</option>
+                   
+                </select>
+            </div>
+        </div>
+            <div class="col-md-1 col-12 my-1">
+                <div class="form-group text-center">
+                    <label asp-for="IsHighCertificate" class="control-label mb-2 text-dark text-bolder" style="height:44px">الشهادة</label>
+                    <select asp-for="IsHighCertificate" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select"  onchange="this.form.submit()">
+                        <option value="">الكل</option>
+                        <option value="1">شهادات عليا</option>
+                        <option value="2">باقي التحصيلات</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 col-12 my-1">
+                <div class="form-group text-center">
+                    <label asp-for="AuditedOrNot" class="control-label mb-2 text-dark text-bolder" style="height:44px">حالة التدقيق</label>
+                    <select asp-for="AuditedOrNot" class="form-control text-dark text-bolder border border-1 border-dark  justify-content-center text-center custom-select" onchange="this.form.submit()">
+                        <option value="">الكل</option>
+                        <option value="1">مدقق</option>
+                        <option value="2">غير مدقق</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div style="max-height: 400px; overflow-y: auto;">
+        <table id="calculatorPointsTable" class=" tbl text-center table-bordered border-secondary table-bordered font-weight-bolder text-dark w-100">
+            <thead class="font-weight-bolder">
+                <tr class="font-weight-bolder">
+                    <th>اسم المستخدم</th>
+                    <th>الأسم الرباعي</th>
+                    <th>الجنس</th>
+                    <th>الحالة الاجتماعية</th>
+                    <th>مسقط الرأس</th>
+                    <th>أسم القضاء</th>
+                    <th>الشهادة</th>
+                    <th>نقاط الخدمة</th>
+                    <th>نقاط الشهادة</th>
+                    <th>نقاط الزوجية</th>
+                    <th>نقاط الأطفال</th>
+                    <th>مجموع النقاط</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var user in Model.UserPoints)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.FirstName @user.SecondName @user.ThirdName @user.LastName </td>
+                        <td>@user.Gender</td>
+                        <td>@user.MaritalStatus</td>
+                        <td>@user.Birthplace</td>
+                        <td>@user.CurrentPlace</td>
+                        <td>@user.CertificateType</td>
+                        <td>@user.ServicesYearsPoints</td>
+                        <td>@user.CertificatePoints</td>
+                        <td>@user.MaritalStatusPoints</td>
+                        <td>@user.ChildrenPoint</td>
+                        <td>@(user.ServicesYearsPoints + user.CertificatePoints + user.MaritalStatusPoints + user.ChildrenPoint)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        
+       
+        
+    </div>
+    <div class="pagination mt-3">
+        @{
+            var totalPages = (int)Math.Ceiling(Model.TotalRecords / (double)Model.PageSize);
+        }
+
+        <ul class="pagination border border-2 border-dark p-2  " style="border-radius: 2rem !important;">
+            @if (Model.CurrentPage > 1)
+            {
+                <li class="page-item bg-info rounded rounded-3 px-1"><a class="page-link text-white border border-0 bg-info  " href="?pageNumber=@(Model.CurrentPage - 1)">السابق</a></li>
+            }
+
+            @for (var i = 1; i <= totalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a class="page-link text-white  @(i != Model.CurrentPage ? "bg-gray-600" : "")" href="?pageNumber=@i">@i</a>
+                </li>
+            }
+
+            @if (Model.CurrentPage < totalPages)
+            {
+                <li class="page-item bg-info rounded rounded-3 px-1 mx-1"><a class="page-link text-white border border-0 bg-info  " href="?pageNumber=@(Model.CurrentPage + 1)">التالي</a></li>
+            }
+        </ul>
+
+    </div>
+    <button type="button" class="btn btn-primary mt-3" onclick="exportToExcel()">تصدير إلى Excel</button>
+</div>
+
+@section Scripts {
+    <script src="~/js/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(document.getElementById('calculatorPointsTable'));
+            XLSX.utils.book_append_sheet(wb, ws, 'احتساب النقاط');
+            XLSX.writeFile(wb, 'احتساب النقاط.xlsx');
+        }
+    </script>
+} *@

@@ -1,0 +1,216 @@
+﻿@page
+@model Ninwa_Employee.Pages.Admin.SettingsModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "الاعدادات";
+}
+<h1>الاعدادات</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<div class="col-md-12 mt-4">
+    <div class="card">
+        <div class="card-header pb-0 px-3">
+            <h4 class="mb-0">تعديل اعدادات الاستمارة</h4>
+          </div>
+        <div class="card-body pt-4 p-3">
+            <form method="post" class=" p-4 mb-2 shadow bg-gray-200 border-radius-l">
+           <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Tblsetting.Id" />
+            <div class="col-4">
+            <div class="form-group">
+                <label class="control-label mb-2 fs-5 text-dark font-weight-bold"> عدد مرات التعديل</label>
+                <input asp-for="Tblsetting.NumberOfEdit" class="form-control p-2 border  border-dark  text-dark text-bolder" />
+                <span asp-validation-for="Tblsetting.NumberOfEdit" class="text-danger"></span>
+            </div>
+            </div>
+
+            <div class="col-4">
+            <div class="form-group">
+                <label  class="control-label mb-2 fs-5 text-dark font-weight-bold">تاريخ غلق الاستمارة</label>
+                  <input type="date" asp-for="Tblsetting.ClosingDate" class="form-control p-2 border border-dark  text-dark text-bolder"  />
+                <span asp-validation-for="Tblsetting.ClosingDate" class="text-danger"></span>
+            </div>
+            </div>
+
+            <div class="col-4">
+            <div class="form-group">
+                <label class="control-label mb-2 fs-5 text-dark font-weight-bold"> هل الاستمارة مفتوحة الان؟</label>
+             
+                <select asp-for="Tblsetting.IsOpen" class="form-control  text-dark text-bolder  p-2 border  border-dark">
+                    <option> مفتوحة </option>
+                    <option> مغلقة </option>
+                </select>
+                <span asp-validation-for="Tblsetting.IsOpen" class="text-danger"></span>
+            </div>
+            </div>
+
+            <div class="form-group mt-3">
+                        <button type="submit" asp-page-handler="UpdataSettings" class="btn btn-info fs-5">حفظ</button>
+                    </div>
+                </div>
+                    @{
+                        if (TempData["SuccessSaveMessage"] != null)
+                        {
+                        <div class="alert alert-success text-white font-weight-bold w-25 " id="successAlert">
+                                @TempData["SuccessSaveMessage"]
+                            </div>
+                        }
+                    }
+          </form>
+        </div>
+    
+    @* اضافة مسؤولين وتغيير كلمات المرور *@
+    @* <div class="card"> *@
+        <div class="card-header pb-0 px-3">
+            <h4 class="mb-0">اضافة مسؤولين وتغيير كلمات المرور</h4>
+        </div>
+        <div class="card-body pt-4 p-4 mb-2 shadow bg-gray-200 border-radius-l">
+
+            <!-- Button to trigger the modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                إضافة مسؤولين 
+            </button>
+
+            <!-- The Modal Structure -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">إضافة مسؤولين</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <form method="post" asp-page-handler="CreateAdmin">
+                                <div class="mb-3">
+                                    <label for="UserFullName" class="form-label">الاسم الرباعي</label>
+                                    <input type="text" class="form-control" id="UserFullName">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="UserName" class="form-label">الايميل</label>
+                                    <input type="text" class="form-control" id="UserName" placeholder="Admin@gmail.com">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">كلمة المرور</label>
+                                    <input type="password" class="form-control" id="password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="UserFullName" class="form-label">قسم المسؤول</label>
+                                    <select id="Depart">
+                                        <option hidden></option>
+                                        <option value="1">مكتب المدير العام</option>
+                                        <option value="2">مكتب المعاون الاداري</option>
+                                        <option value="3">مكتب المعاون الفني</option>
+                                        <option value="4">التخطيط التربوي</option>
+                                        <option value="5">الامتحانات</option>
+                                        <option value="6">الاعداد والتدريب</option>
+                                        <option value="7">شؤون المناهج والتقنيات التربوية</option>
+                                        <option value="8">التعليم المهني</option>
+                                        <option value="9">النشاط الرياضي</option>
+                                        <option value="10">النشاط المدرسي</option>
+                                        <option value="11">شؤون المالية</option>
+                                        <option value="12">الادارة والتجهيزات</option>
+                                        <option value="13">الموارد البشرية</option>
+                                        <option value="14">التعليم العام والملاك</option>
+                                        <option value="15">محو الامية</option>
+                                        <option value="16">التدقيق والرقابة الداخلية</option>
+                                        <option value="17">الاشراف الاختصاصي</option>
+                                        <option value="18">الاشراف التربوي</option>
+                                        <option value="19">الدراسة الايزيدية</option>
+                                        <option value="20">الدراسة الكردية</option>
+                                        <option value="21">الدراسة السريانية</option>
+                                        <option value="22">الدراسة التركمانية</option>
+                                        <option value="23">تربية ام الربيعين</option>
+                                        <option value="24">تربية الحدباء</option>
+                                        <option value="25">تربية قضاء الموصل</option>
+                                        <option value="26">تربية تلعفر</option>
+                                        <option value="27">تربية الحضر</option>
+                                        <option value="28">تربية البعاج</option>
+                                        <option value="29">تربية سنجار</option>
+                                        <option value="30">تربية ربيعة</option>
+                                        <option value="31">تربية النمرود</option>
+                                        <option value="32">تربية القيروان</option>
+                                        <option value="33">تربية المحلبية</option>
+                                        <option value="34">تربية تلكيف</option>
+                                        <option value="35">تربية الحمدانية</option>
+                                        <option value="36">تربية بعشيقة</option>
+                                        <option value="37">تربية اربيل المؤقت</option>
+                                        <option value="38">تربية دهوك المؤقت</option>
+                                        <option value="39">الكل</option>
+                                    </select>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="EditUser">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        بحث وتعديل موظف
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="AddUser">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        إضافة مستخدمين
+                                    </label>
+                                </div>
+                                 <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="CheckForm">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        التحقق من الاستمارة
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="Statistics">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        الاحصائيات
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="Reports">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        التقارير
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="Permissions" value="Settings">
+                                    <label class="form-check-label" for="flexCheckChecked">
+                                        الاعدادات
+                                    </label>
+                                </div>
+                               
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">إضافة</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </div> 
+
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        // Wait for the DOM to be fully loaded
+        document.addEventListener("DOMContentLoaded", function () {
+            // Find the alert element
+            var alert = document.getElementById("successAlert");
+
+            // If the alert exists, set a timeout to remove it after 5 seconds (5000 milliseconds)
+            if (alert) {
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 2500);
+            }
+        });
+
+    // Initialize Flatpickr without calendar drop-down
+    flatpickr("#Tblsetting_ClosingDate", {
+        allowInput: false, // Allow manual input
+        dateFormat: "Y/m/d"
+
+    });
+    </script>
+

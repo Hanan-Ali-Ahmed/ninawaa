@@ -1,0 +1,455 @@
+﻿@page
+@model Ninwa_Employee.Pages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Tbluserdatum</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Tbluserdatum.UserId" class="control-label"></label>
+                <input asp-for="Tbluserdatum.UserId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label asp-for="Tbluserdatum.UserName" class="control-label">اسم المستخدم</label>
+                <input asp-for="Tbluserdatum.UserName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">الاسم الرباعي واللقب</label>
+                <input asp-for="Tbluserdatum.FullName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الاسم </label>
+                <input asp-for="Tbluserdatum.FirstName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الاب</label>
+                <input asp-for="Tbluserdatum.SecondName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الجد</label>
+                <input asp-for="Tbluserdatum.ThirdName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم والد الجد</label>
+                <input asp-for="Tbluserdatum.LastName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اللقب</label>
+                <input asp-for="Tbluserdatum.Tittle" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الجنس</label>
+                <select asp-for="Tbluserdatum.GenderId" class="form-control" asp-items="ViewBag.GenderId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ الميلاد</label>
+                <input asp-for="Tbluserdatum.BirthDate" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الام الثلاثي</label>
+                <input asp-for="Tbluserdatum.MotherFullName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الحالة الاجتماعية</label>
+                <select asp-for="Tbluserdatum.MaritalStatusId" class="form-control" asp-items="ViewBag.MaritalStatusId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label class="control-label">اسم الزوج / الزوجة</label>
+                <input asp-for="Tbluserdatum.NumberOfWives" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك بطاقة وطنية ؟</label>
+                <select asp-for="Tbluserdatum.AnswerId" class="form-control" asp-items="ViewBag.AnswerId">
+                    <option hidden></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">رقم البطاقة الوطنية</label>
+                <input asp-for="Tbluserdatum.PersonalCardNumber"
+                       class="form-control"
+                       type="text"
+                       id="personalCardInput"
+                       placeholder="الحد الاقصى 12 رقم"
+                       maxlength="12" />
+                <small id="personalCardError" class="text-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">رقم الجنسية</label>
+                <input asp-for="Tbluserdatum.NationalityNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">رقم الصحيفة</label>
+                <input asp-for="Tbluserdatum.NewspaperNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">رقم السجل</label>
+                <input asp-for="Tbluserdatum.RegistrationNumber" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">القضاء</label>
+                <input asp-for="Tbluserdatum.Judic" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الناحية</label>
+                <input asp-for="Tbluserdatum.Side" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">حي /القرية</label>
+                <input asp-for="Tbluserdatum.City" class="form-control" />
+            </div>
+            <div class="co-12 my-1">
+                <div class="form-group">
+                    <label asp-for="Tbluserdatum.PhoneNumber" class="control-label mb-2">رقم الهاتف (فعال)</label>
+                    <input type="text" asp-for="Tbluserdatum.PhoneNumber" class="form-control text-dark text-bolder" id="phoneNumberInput" maxlength="11" />
+                    <span asp-validation-for="Tbluserdatum.PhoneNumber" class="text-danger" id="phoneError"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">العنوان الوظيفي</label>
+                <input asp-for="Tbluserdatum.WorkName" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">القسم</label>
+                <select asp-for="Tbluserdatum.EmppartsId" class="form-control" asp-items="ViewBag.EmppartsId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الشعبة/الوحدة/المدرسة</label>
+                <input asp-for="Tbluserdatum.UnitSchoole" class="form-control" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">المنصب الاداري</label>
+                <select asp-for="Tbluserdatum.EmppositionId" class="form-control" asp-items="ViewBag.EmppositionId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">التحصيل الدراسي</label>
+                <select asp-for="Tbluserdatum.CertificateId" class="form-control" asp-items="ViewBag.CertificateId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label class="control-label">الجامعة</label>
+                <input asp-for="Tbluserdatum.University" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">الكلية / المعهد</label>
+                <input asp-for="Tbluserdatum.College" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">الاختصاص الدقيق</label>
+                <input asp-for="Tbluserdatum.Specialization" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">بلد الدراسة</label>
+                <input asp-for="Tbluserdatum.Countrystudy" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">سنة الدراسة</label>
+                <input asp-for="Tbluserdatum.Gradyear" class="form-control" placeholder="ًمثلا 2020/2021" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الشهادة المعين بها</label>
+                <select asp-for="Tbluserdatum.CertificateId2" class="form-control" asp-items="ViewBag.CertificateId2">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك شهادة محتسبة مضافة بعد التعيين</label>
+                <select asp-for="Tbluserdatum.CountcertificateId" class="form-control" asp-items="ViewBag.CountcertificateId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">اخر شهادة محتسبة تم الحصول عليها</label>
+                <select asp-for="Tbluserdatum.CertificateId3" class="form-control" asp-items="ViewBag.CertificateId3">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">تاريخ اخر شهادة محتسبة تم الحصول عليها</label>
+                <input asp-for="Tbluserdatum.LastcertificDate" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">اللقب العلمي ان وجد</label>
+                <select asp-for="Tbluserdatum.scientifictitleId" class="form-control" asp-items="ViewBag.scientifictitleId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ التعيين</label>
+                <input asp-for="Tbluserdatum.HiringDate" class="form-control" type="date" />
+
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ المباشرة لاول مره</label>
+                <input asp-for="Tbluserdatum.StartDate" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك انقطاع؟</label>
+                <select asp-for="Tbluserdatum.DropId" class="form-control" asp-items="ViewBag.DropId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label class="control-label">تاريخ الانقطاع</label>
+                <input asp-for="Tbluserdatum.DropDate" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">تاريخ المباشرة بعد الانقطاع</label>
+                <input asp-for="Tbluserdatum.Startafterdrop" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">رقم كتاب اعادة التعيين</label>
+                <input asp-for="Tbluserdatum.BookNumReturnHiring" class="form-control" type="number" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">تاريخ كتاب اعادة التعيين</label>
+                <input asp-for="Tbluserdatum.DateBookReturnHiring" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">هل لديك خدمة مضافة ؟</label>
+                <select asp-for="Tbluserdatum.AddId" class="form-control" asp-items="ViewBag.AddId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">نوع الخدمة المضافة</label>
+                <input asp-for="Tbluserdatum.AddType" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">ايام الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddDays" class="form-control text-dark text-bolder  custom-select" id="AddDays"  required>
+                    <option hidden> يوم</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 29; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">اشهر الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddMonths" class="form-control text-dark text-bolder  custom-select" id="AddMonths"  required>
+                    <option hidden>اشهر</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">سنوات الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddYears" class="form-control text-dark text-bolder  custom-select" id="AddYears"  required>
+                    <option hidden> سنة</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 30; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">الحالة الوظيفية</label>
+                <select asp-for="Tbluserdatum.EmpstatusId" class="form-control" asp-items="ViewBag.EmpstatusId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">نوع الاجازة الطويلة المتمع بها حالياً</label>
+                <select asp-for="Tbluserdatum.vacationId" class="form-control" asp-items="ViewBag.vacationId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label"> اشهر الاجازة</label>
+                <select asp-for="Tbluserdatum.vacationMonths" class="form-control text-dark text-bolder  custom-select" id="vacationMonths" required>
+                    <option hidden>اشهر</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">سنوات الاجازة</label>
+                <select asp-for="Tbluserdatum.vacationYears" class="form-control text-dark text-bolder  custom-select" id="vacationYears" required>
+                    <option hidden> سنة</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 30; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">تاريخ الانفكاك للتمتع بالاجازة</label>
+                <input asp-for="Tbluserdatum.BreakupDate" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل الموظف من ذوي الشهداء؟</label>
+                <select asp-for="Tbluserdatum.MartyrsId" class="form-control" asp-items="ViewBag.MartyrsId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">رقم كتاب مؤسسة الشهداء/رقم هوية ذوي الشهداء </label>
+                <input asp-for="Tbluserdatum.NumberBookMartyrs" class="form-control" type="number" />
+            </div>
+            <div class="form-group">
+                <label class="control-label"> تاريخ كتاب مؤسسة الشهداء/تاريخ صدور هوية ذوي الشهداء</label>
+                <input asp-for="Tbluserdatum.DateBookMartyrs" class="form-control" type="date" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">هل لديك فصل سياسي؟</label>
+                <select asp-for="Tbluserdatum.ChapterId" class="form-control" asp-items="ViewBag.ChapterId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="form-group">
+
+                <label class="control-label">ايام الفصل</label>
+               
+                <select asp-for="Tbluserdatum.ChapterDays" class="form-control text-dark text-bolder  custom-select" id="ChapterDays"  required>
+                    <option hidden> يوم</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 29; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">اشهر الفصل</label>
+                <select asp-for="Tbluserdatum.ChapterMonths" class="form-control text-dark text-bolder  custom-select" id="ChapterMonths" required>
+                    <option hidden> شهر</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">سنوات الفصل</label>
+                <select asp-for="Tbluserdatum.ChapterYears" class="form-control text-dark text-bolder  custom-select" id="ChapterYears"  required>
+                    <option hidden> سنة</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 30; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">رقم امر الفصل</label>
+                <input asp-for="Tbluserdatum.NumberBookChapter" class="form-control" type="number" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">تاريخ امر الفصل</label>
+                <input asp-for="Tbluserdatum.DateBookChapter" class="form-control" type="date" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">الملاحظات</label>
+                <input type="text" asp-for="Tbluserdatum.Notee" id="noteInput" class="form-control" placeholder="حد أقصى 100 أحرف" maxlength="100" />
+                <small id="noteError" class="text-danger"></small>
+                <small id="noteCount" class="text-muted"></small>
+            </div>
+            
+            <div class="my-1 mb-3">
+                <div class="form-group">
+                    <div class="form-check">
+                        <label asp-for="Tbluserdatum.answer" class="form-check-label mx-2" for="pledgeCheckbox">
+                            <input type="checkbox" asp-for="Tbluserdatum.answer" class="form-check-input" id="pledgeCheckbox" />
+                            اتعهد بصحة كافة البيانات المرسلة واتحمل المسؤولية كاملة خلاف ذلك
+                        </label>
+                    </div>
+                    <span asp-validation-for="Tbluserdatum.answer" class="text-danger" class="required-warning"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tbluserdatum.CreatedAt" class="control-label"></label>
+                <input asp-for="Tbluserdatum.CreatedAt" class="form-control" />
+                <span asp-validation-for="Tbluserdatum.CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tbluserdatum.UpdatedAt" class="control-label"></label>
+                <label asp-for="Tbluserdatum.UpdatedAt" class="control-label"></label>
+                <input asp-for="Tbluserdatum.UpdatedAt" class="form-control" />
+                <span asp-validation-for="Tbluserdatum.UpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+<script src="~/js/site.js"></script>
+
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
+

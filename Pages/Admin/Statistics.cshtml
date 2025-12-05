@@ -1,0 +1,136 @@
+@page
+@model Ninwa_Employee.Pages.Admin.StatisticsModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "احصائيات";
+}
+<div class="d-flex justify-content-between align-content-between">
+    <h1>احصائيات</h1>
+    <button type="button" class="btn btn-primary mt-3" onclick="exportToExcel()">تصدير إلى Excel</button>
+
+</div>
+
+
+<div class="container mt-5">
+    <div style="max-height: 400px; overflow-y: auto;">
+        <table id="statisticsTable" class="tbl text-center table-bordered border-secondary rounded p-3 font-weight-bolder text-dark w-100">
+            <thead class="font-weight-bolder">
+                <tr>
+                    <th>القسم</th>
+                    <th>عدد المستخدمين</th>
+                    <th>عدد الذكور</th>
+                    <th>عدد الإناث</th>
+                    <th>عدد الموظفين المستمرين</th>
+                    <th>عدد الموظفين المجازين</th>
+                    <th>عدد الموظفين (سحب يد)</th>
+                    <th>عدد الموظفين (أخرى)</th>
+                    <th>تم تدقيق استمارتهم</th>
+                    <th>لم يتم تدقيق استمارتهم</th>
+                    @* <th>عدد المستخدمين غير المحدثين</th> *@
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach (var districtStat in Model.DistrictStats)
+                {
+                    <tr>
+                        <td>@districtStat.empparts</td>
+                        <td>@districtStat.TotalUsers</td>
+                        <td>@districtStat.MaleCount</td>
+                        <td>@districtStat.FemaleCount</td>
+                        <td>@districtStat.empstatus1</td>
+                        <td>@districtStat.empstatus2</td>
+                        <td>@districtStat.empstatus3</td>
+                        <td>@districtStat.empstatus4</td>
+                        <td>@districtStat.CheckCount</td>
+                        <td>@districtStat.NotCheckCount</td>
+                        @* <td>@districtStat.ExcludedCount</td> *@
+                    </tr>
+                }
+                <tr class="font-weight-bold">
+                    <td>المجموع</td>
+                    <td>@Model.TotalUsers</td>
+                    <td>@Model.TotalMaleCount</td>
+                    <td>@Model.TotalFemaleCount</td>
+                    <td>@Model.Totalempstatus1</td>
+                    <td>@Model.Totalempstatus2</td>
+                    <td>@Model.Totalempstatus3</td>
+                    <td>@Model.Totalempstatus4</td>
+                    <td>@Model.Totalcheck</td>
+                    <td>@Model.Totalnotcheck</td>
+                    @* <td>@Model.TotalExcludedCount</td> *@
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-start mt-3 gap-2" style="align-items: stretch;">
+
+        <!-- الكارد -->
+        <div class="card shadow-sm w-75" style="height: 60px;">
+            <div class="card-body d-flex justify-content-center align-items-center p-2">
+                <h6 class="card-title m-0">
+                    عدد المستخدمين الغير مسجلين :
+                    <span class="h4 text-danger">
+                        @Model.TotalExcludedCount
+                    </span>
+                </h6>
+            </div>
+        </div>
+
+        <!-- البوتون -->
+        <button class="btn btn-outline-primary" 
+                style="height: 60px; width: 150px; display: flex; align-items: center; justify-content: center;" onclick="toggleExcludedTable()">
+            عرض المعلومات
+        </button>
+
+    </div>
+
+    <div id="excludedTable" style="display:none;" class="mt-4">
+        <h5 class="mb-3 text-primary">قائمة المستخدمين الغير مسجلين</h5>
+
+        <table class="table table-bordered table-striped text-center" id="UsersListTable">
+            <thead class="thead-dark">
+                <tr>
+                    <th>الاسم الرباعي</th>
+                    <th>الرقم الوظيفي</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.ExcludedUsersList)
+                {
+                    <tr>
+                        <td>@user.UserFullName</td>
+                        <td>@user.UserName</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-primary mt-3" onclick="exportToExcelUsersList()">تصدير إلى Excel</button>
+
+    </div>
+
+
+</div>
+
+@section Scripts {
+    <script src="~/js/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(document.getElementById('statisticsTable'));
+            XLSX.utils.book_append_sheet(wb, ws, 'الاحصائيات');
+            XLSX.writeFile(wb, 'الاحصائيات.xlsx');
+        }
+        function exportToExcelUsersList() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(document.getElementById('UsersListTable'));
+            XLSX.utils.book_append_sheet(wb, ws, 'المستخدمين الغير مسجلين');
+            XLSX.writeFile(wb, 'المستخدمين الغير مسجلين.xlsx');
+        }
+    </script>
+}
+<script>
+    function toggleExcludedTable() {
+        var table = document.getElementById("excludedTable");
+        table.style.display = (table.style.display === "none") ? "block" : "none";
+    }
+</script>

@@ -1,0 +1,454 @@
+﻿@page
+@model Ninwa_Employee.Pages.User.DetailsModel
+@using Newtonsoft.Json
+@{
+    string GetDisplayValue(string value) => string.IsNullOrEmpty(value) ? "لا يوجد" : value;
+    string GetNullableDisplayValue<T>(T? value) where T : struct => value.HasValue ? value.Value.ToString() : "لا يوجد";
+}
+
+
+<div class="container  bg-white p-4 rounded shadow my-3 w-85" lang="ar" dir="rtl">
+    <h2 class="text-center mb-4">عرض البيانات</h2>
+    <div id="printable-area" dir="rtl">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <div class="mx-2" id="qrcode1"></div>
+
+            <div class="text-right text-dark font-weight-bolder" id="current-date-time"></div>
+        </div>
+        <div id="page1" class="data-page">
+
+        <table class="tbl  table-bordered border-secondary  w-100 font-weight-bolder text-dark  rounded p-3 table-responsive-md mt-3">
+            <tbody>
+                <img src="../img/logo.jpeg" class="watermark  mr-5 " alt="علامة مائية" />
+                <tr>
+                    <td> الرقم الوظيفي</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.UserName)
+                    </td>
+                </tr>
+                <tr>
+                   <td> الأسم الرباعي واللقب</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.FirstName + " " + Model.Tbluserdatum.SecondName + " " + Model.Tbluserdatum.ThirdName + " " + Model.Tbluserdatum.LastName + " " + Model.Tbluserdatum.Tittle) </td>
+                </tr>
+                <tr>
+                    <td> الجنس </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.Gender.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <td>تاريخ التولد</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.BirthDate)</td>
+                </tr>
+                <tr>
+                    <td>اسم الام الثلاثي</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.MotherFullName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>الحالة الاجتماعية</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.MaritalStatus.MaritalStatus)
+                    </td>
+                </tr>
+                    <tr>
+                        <td>عدد الزوجات </td>
+                        <td>@Html.DisplayFor(model => model.Tbluserdatum.NumberOfWives)</td>
+                    </tr>    
+                    <tr>
+                        <td>اسم الزوج /الزوجة (1) الرباعي</td>
+                        <td>@GetDisplayValue(Model.FirstWife)</td>
+                    </tr>
+                    <tr>
+                        <td>اسم الزوج /الزوجة (2) الرباعي</td>
+                        <td>@GetDisplayValue(Model.SecondWife)</td>
+                    </tr>
+                    <tr>
+                        <td>اسم الزوج /الزوجة (3) الرباعي</td>
+                        <td>@GetDisplayValue(Model.ThirdWife)</td>
+                    </tr>
+                    <tr>
+                        <td>اسم الزوج /الزوجة (4) الرباعي</td>
+                        <td>@GetDisplayValue(Model.FourthWife)</td>
+                    </tr>
+
+                 <tr>
+                    <td>هل لديك بطاقة موحدة؟ </td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.answer1.answer)</td>
+               </tr>
+                 <tr>
+                    <td>رقم البطاقة الوطنية  </td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.PersonalCardNumber)</td>
+                </tr>
+                <tr>
+                    <td>رقم  الجنسية</td>
+                    <td>  @Html.DisplayFor(model => model.Tbluserdatum.NationalityNumber)</td>
+                </tr>
+                <tr>
+                    <td>رقم الصحيفة</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.NewspaperNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>رقم السجل</td>
+                    <td>  @Html.DisplayFor(model => model.Tbluserdatum.RegistrationNumber)</td>
+                </tr>
+                <tr>
+                    <td>المحافظة</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.Gover)</td>
+                </tr>
+                    <tr>
+                        <td>القضاء</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.Judic)</td>
+                    </tr>
+                <tr>
+                    <td>الناحية</td>
+                    <td>   @Html.DisplayFor(model => model.Tbluserdatum.Side)</td>
+                </tr>
+                <tr>
+                    <td>القرية/ الحي</td>
+                    <td>  @Html.DisplayFor(model => model.Tbluserdatum.City)</td>
+                </tr>
+                <tr>
+                    <td>رقم الهاتف</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.PhoneNumber)</td>
+                </tr>
+                <tr>
+                    <td>العنوان الوظيفي</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.WorkName)</td>
+                </tr>
+                <tr>
+                    <td>القسم</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.empparts.empparts)
+                    </td>
+                </tr>
+                <tr>
+                    <td>الوحدة / الشعبة/المدرسة</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.UnitSchoole)</td>
+                </tr>
+                <tr>
+                    <td>المنصب الاداري</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.empposition.empposition)
+                    </td>
+                </tr>
+                    <tr>
+                        <td>التحصيل الدراسي</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.Certificate.CertificateType)</td>
+                    </tr>
+                    <tr>
+                        <td>الجامعة</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.University)</td>
+                    </tr>
+                    <tr>
+                        <td>الكلية/المعهد</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.College)</td>
+                    </tr>
+                    <tr>
+                        <td>الاختصاص الدقيق</td>
+                        <td> @Html.DisplayFor(model => model.Tbluserdatum.Specialization)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button id="nextBtn" onclick="showPage(1)" class="nav-btn">
+                <span class="arrow">&#8594;</span>
+            </button>
+        </div>
+        <div id="page2" class="data-page" style="display:none;">
+            <table class="tbl table-bordered w-100">
+                <tbody>
+                
+                <tr>
+                    <td>بلد الدراسة</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.Countrystudy)</td>
+                </tr>
+                <tr>
+                    <td>سنة التخرج</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.Gradyear)</td>
+                </tr>
+                <tr>
+                    <td> الشهادة المعين بها</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.Certificate2.CertificateType)
+                    </td>
+                </tr>
+                <tr>
+                    <td>هل لديك شهادة محتسبة مضافة بعد التعيين</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.answer2.answer)</td>
+                </tr>
+                <tr>
+                    <td>اخر شهادة محتسبة تم الحصول عليها</td>
+               
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.Certificate3.CertificateType)</td>
+                </tr>
+                <tr>
+                    <td>تاريخ اخر شهادة محتسبة تم الحصول عليه</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.LastcertificDate)</td>
+                </tr>
+                <tr>
+                    <td>اللقب العلمي ان وجد</td>
+                    <td>  @Html.DisplayFor(model => model.Tbluserdatum.scientifictitle.scientifictitle)</td>
+                </tr>
+                <tr>
+                    <td>تاريخ التعيين</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.HiringDate)</td>
+                </tr><tr>
+                    <td>تاريخ المباشرة لاول مره</td>
+                    <td>  @Html.DisplayFor(model => model.Tbluserdatum.StartDate)</td>
+                </tr>
+                <tr>
+                    <td>هل لديك انقطاع؟</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.answer3.answer)
+                    </td>
+                </tr>
+                <tr>
+                    <td>تاريخ الانقطاع</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.DropDate)
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>تاريخ المباشرة بعد الانقطاع</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.Startafterdrop)</td>
+                </tr>
+                <tr>
+                    <td>رقم كتاب اعادة التعيين</td>
+                    <td> @Html.DisplayFor(model => model.Tbluserdatum.BookNumReturnHiring)</td>
+                </tr>
+                <tr>
+                    <td>تاريخ كتاب اعادة التعيين</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.DateBookReturnHiring)
+                    </td>
+                </tr>
+                <tr>
+                    <td> هل لديك خدمة مضافة؟</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.answer4.answer)
+                    </td>
+                </tr>
+                <tr>
+                    <td>نوع الخدمة المضافة</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.AddType)
+                    </td>
+                </tr>
+                <tr>
+                    <td>مدة الخدمة المضافة بالسنوات</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.AddYears)
+
+                    </td>
+                </tr>
+                <tr>
+                    <td> مدة الخدمة المضافة بالأشهر</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.AddMonths)
+                    </td>
+                </tr>
+                <tr>
+                    <td>مدة الخدمة المضافة بالأيام</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.AddDays)
+                    </td>
+                </tr>
+                <tr>
+                    <td>الحالة الوظيفية</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.empstatus.empstatus)
+                    </td>
+                </tr>
+                <tr>
+                    <td> نوع الأجازة الطويلة المتمتع بها</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.vacation.vacation)
+                    </td>
+                </tr>
+                <tr>
+                    <td> مدة الاجازة بالسنوات</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.vacationYears)
+                    </td>
+                </tr>
+                <tr>
+                    <td> مدة الاجازة بالأشهر</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.vacationMonths)
+                    </td>
+                </tr>
+                <tr>
+                    <td>تاريخ الأنفكاك للتمتع بالأجازة</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.BreakupDate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>هل الموظف من ذوي الشهداء؟</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.answer5.answer)
+                    </td>
+                </tr>
+                <tr>
+                    <td>رقم كتاب مؤسسة الشهداء / رقم هوية ذوي الشهداء</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.NumberBookMartyrs)
+                    </td>
+                </tr>
+                <tr>
+                    <td>تاريخ كتاب مؤسسة الشهداء / تاريخ صدور هوية ذوي الشهداء</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.DateBookMartyrs)
+                    </td>
+                </tr>
+                <tr>
+                    <td>هل لديك فصل سياسي؟</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.answer6.answer)
+                    </td>
+                </tr>
+                <tr>
+                    <td>مدة الفصل بالسنوات</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.ChapterYears)
+                    </td>
+                </tr>
+                <tr>
+                    <td>مدة الفصل بالأشهر</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.ChapterMonths)
+                    </td>
+                </tr>
+                <tr>
+                    <td>مدة الفصل بالأيام</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.ChapterDays)
+                    </td>
+                </tr>
+                <tr>
+                    <td>رقم امر الفصل</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.NumberBookChapter)
+                    </td>
+                </tr>
+                <tr>
+                    <td>تاريخ امر الفصل</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.DateBookChapter)
+                    </td>
+                </tr>
+                <tr>
+                    <td>الملاحظات</td>
+                    <td>
+                        @Html.DisplayFor(model => model.Tbluserdatum.Notee)
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-between align-items-center mb-2 mb-md-0">
+            <div class="d-flex gap-1 flex-nowrap">
+                <button class="btn btn-primary " onclick="saveAsPDF()">طباعة</button>
+                @* <form id="logoutForm" asp-page="/Logout" method="post" style="display:inline;">
+                    <input type="hidden" name="username1" value="@GetDisplayValue(Model.Tbluserdatum.UserName)" />
+                    <button type="submit" class="btn btn bg-gradient-success ">
+                        <span class="nav-link-text "> حفظ وتسجيل خروج</span>
+                    </button>
+                </form> *@
+                        <form class="d-flex justify-content-center align-items-center mx-3 buttom-0" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+                            <input type="hidden" name="username1" value="@GetDisplayValue(Model.Tbluserdatum.UserName)" />
+                            <button type="submit" class="btn bg-gradient-primary w-100  d-flex justify-content-md-center align-items-center ">
+                                <span class="nav-link-text me-1">تسجيل الخروج</span>
+                            </button>
+                        </form>
+                <button onclick="goBack()" class="btn btn-info">رجوع</button>
+            </div>
+        </div>
+      </div>
+
+            <button id="prevBtn" onclick="showPage(-1)" class="nav-btn">
+                <span class="arrow">&#8592;</span>
+            </button>
+
+            
+  </div>   
+   
+
+    <script>
+        let currentPage = 1;
+        function showPage(n) {
+            const pages = document.querySelectorAll('.data-page');
+            pages[currentPage - 1].style.display = 'none';
+            currentPage += n;
+            if (currentPage > pages.length) currentPage = pages.length;
+            if (currentPage < 1) currentPage = 1;
+            pages[currentPage - 1].style.display = 'block';
+        }
+    </script>
+</div>
+<script src="~/js/html2pdf.bundle.min.js"></script>
+<script src="~/js/qrcode.min.js"></script>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    @if (Model.EncryptedData != null)
+    {
+        <script>
+            $(document).ready(function () {
+                // استخدم JSON.stringify للهروب من أي أحرف خاصة
+                var encryptedData = @Html.Raw(JsonConvert.SerializeObject(Model.EncryptedData));
+
+                var qrcode = new QRCode(document.getElementById("qrcode1"), {
+                    text: encryptedData,
+                    width: 70,
+                    height: 70
+                });
+            });
+        </script>
+    }
+}
+<script>
+    function saveAsPDF() {
+
+        var FileUserName = "@GetDisplayValue(Model.Tbluserdatum.UserName)";
+        var element = document.getElementById('printable-area');
+
+        var opt = {
+            margin: 3,
+            filename: FileUserName + '.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+        };
+
+        // Generate and save the PDF
+        html2pdf().set(opt).from(element).save();
+    }
+
+   
+
+    function goBack() {
+        window.history.back();
+    }
+
+    function printPage() {
+        // Ensure the date and time are updated before printing
+        updateDateTime();
+
+        // Print the page
+        var originalContents = document.body.innerHTML;
+        var printContents = document.getElementById('printable-area').innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
+
+    // Update date and time on page load
+    window.onload = updateDateTime;
+</script>

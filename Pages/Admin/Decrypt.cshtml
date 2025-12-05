@@ -1,0 +1,334 @@
+﻿@page
+@model Ninwa_Employee.Pages.Admin.DecryptModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "التحقق من الباركود";
+    string GetDisplayValue(string value) => string.IsNullOrEmpty(value) ? "لا يوجد" : value;
+    string GetNullableDisplayValue<T>(T? value) where T : struct => value.HasValue ? value.Value.ToString() : "لا يوجد";
+}
+<style>
+    .lab {
+        font-size: 20px !important;
+        font-weight: bold !important;
+        color: black !important;
+    }
+
+    .custom-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right center;
+        background-size: 18px 18px;
+        padding-right: 30px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        height: 7vh !important;
+        font-size: 16px;
+        color: black !important;
+        padding-right: 1.8rem !important;
+    }
+
+</style>
+<script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+<h2>التحقق من الاستمارة</h2>
+<div class="col-md-12 mt-4">
+    <div class="card">
+        <div class="card-body pt-4 p-3">
+            <div class="my-1 p-4 mb-2 bg-gray-200 border-radius-l shadow">
+                <form method="post" asp-page-handler="SearchUser">
+                    <div class="form-group input-group-outline">
+                        <label class="control-label lab mb-2 fs-5 text-dark font-weight-bold">الرقم الوظيفي</label>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <input type="text" id="encryptedInput" asp-for="SearchInput" class="form-control p-2 border border-dark" placeholder="ابحث هنا ...." />
+                               
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-info w-75 fs-6">بحث</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <button id="scanQrCode" class="btn btn-primary fs-6 mt-3">مسح الباركود</button>
+                <div id="qr-reader" style="width: 300px; margin-top: 20px;"></div>
+            </div>
+            @{
+                if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success text-white font-weight-bold w-25 mt-3" id="successAlert">
+                        @TempData["SuccessMessage"]
+                    </div>
+
+                }
+                @if (Model.SearchResultMessage != null)
+                {
+                    <div class="alert alert-info mt-2">
+                        @Model.SearchResultMessage
+                    </div>
+                }
+            }
+          
+        </div>
+    </div>
+</div>
+
+
+@if (Model.Tbluserdatum != null)
+{
+    
+   <div class="container bg-white font-weight-bolder text-dark w-100 p-4 rounded border-radius-l shadow  my-3">
+        <div class="row">
+            <div class="col-md-9 col-sm-6">
+            <h3 class="m-auto">عرض البيانات</h3>
+        </div>
+        <div class="col-md-3 col-sm-6  my-1">
+            <input asp-for="Tbluserdatum.UpdatedAt" class=" border-0" readonly>
+        </div>
+        </div>
+        <table class="    table-bordered border-secondary  w-100 font-weight-bolder text-dark  rounded p-3 table-responsive-md mt-3">
+            <tbody>
+                
+                <tr>
+                    <td>اسم المستخدم</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.UserName)</td>
+                </tr>
+                <tr>
+                    <td> الأسم الرباعي قبل التعديل</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.FullName) </td>
+                </tr>
+                <tr>
+                    <td> الأسم الرباعي بعد التعديل</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.FirstName + " " + Model.Tbluserdatum.SecondName + " " + Model.Tbluserdatum.ThirdName + " " + Model.Tbluserdatum.LastName) </td>
+                </tr>
+                <tr>
+                    <td>رقم البطاقة الموحدة او الجنسية</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.PersonalCardNumber)</td>
+                </tr>
+                <tr>
+                    <td>اسم الام الثلاثي</td>
+                    <td>@GetDisplayValue(Model.Tbluserdatum.MotherFullName)</td>
+                </tr>
+                <tr>
+                    <td>الجنس</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.Gender.Gender)</td>
+                </tr>
+                @* <tr>
+                    <td>مسقط الرأس</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.Birthplace.Birthplace)</td>
+                </tr>
+                <tr>
+                    <td>اذا كانت ولادتك خارج البصرة , هل كان سكنك اخر 10 سنوات داخل محافظة البصرة</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.PlaceLastTenYear, "Gender")</td>
+                </tr>
+                <tr>
+                    <td>منطقة السكن</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.PlaceArea)</td>
+                </tr>
+                <tr>
+                    <td>القضاء</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.CurrentPlace.CurrentPlace)</td>
+                </tr> *@
+                <tr>
+                    <td>الشهادة</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.Certificate.CertificateType)</td>
+                </tr>
+                <tr>
+                    <td>الحالة الأجتماعية</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.MaritalStatus.MaritalStatus)</td>
+                </tr>
+            @*     <tr>
+                    <td>اذا كنت اعزب او ارمل او مطلق هل لديك حجه اعاله او وصاية موثقة بكتاب رسمي</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.HaveNotarizedGuardianship, "Gender")</td>
+                </tr>
+                <tr>
+                    <td>عدد الزوجات</td>
+                    <td>@GetNullableDisplayValue(Model.Tbluserdatum.NumberOfWives)</td>
+
+                </tr>
+                <tr>
+                    <td>اسم الزوجة الاولى</td>
+                    <td>@GetDisplayValue(Model.FirstWife)</td>
+                </tr>
+                <tr>
+                    <td>اسم الزوجة الثانية</td>
+                    <td>@GetDisplayValue(Model.SecondWife)</td>
+                </tr>
+                <tr>
+                    <td>اسم الزوجة الثالثة</td>
+                    <td>@GetDisplayValue(Model.ThirdWife)</td>
+                </tr>
+
+                <tr>
+                    <td>اسم الزوجة الرابعة</td>
+                    <td>@GetDisplayValue(Model.FourthWife)</td>
+                </tr>
+
+                <tr>
+                    <td>عدد الابناء</td>
+                    <td>@GetNullableDisplayValue(Model.Tbluserdatum.NumberOfChildren)</td>
+                </tr>
+                <tr>
+                    <td>ابناء اصغر من 18</td>
+                    <td>@GetNullableDisplayValue(Model.Tbluserdatum.ChildrenLessThan18)</td>
+                </tr>
+                <tr>
+                    <td>ابناء اكبر من 18</td>
+                <td>@GetNullableDisplayValue(Model.Tbluserdatum.ChildrenMoreThan18)</td>
+                </tr>   
+                <tr>
+                    <td>هل لديك خدمة مضافة او انقطاع</td>
+                    <td>@Html.DisplayFor(model => model.Tbluserdatum.AddOrDropService, "Gender")</td>
+                </tr>
+                <tr>
+                    <td>ايام الخدمة المضافة</td>
+                    <td>@GetNullableDisplayValue(Model.Tblpoint.AddServiceDays)</td>
+                </tr>
+                <tr>
+                    <td>اشهر الخدمة المضافة</td>
+                    <td>@GetNullableDisplayValue(Model.Tblpoint.AddServiceMonths)</td>
+                </tr>
+                <tr>
+             <td>سنوات الخدمة المضافة</td>
+                <td>@GetNullableDisplayValue(Model.Tblpoint.AddServiceYears)</td>
+             </tr>
+             <tr>
+                <td>ايام الخدمة المنقطعة</td>
+                <td>@GetNullableDisplayValue(Model.Tblpoint.DropServiceDays)</td>
+                </tr>
+             <tr>
+                <td>اشهر الخدمة المنقطعة</td>
+                <td>@GetNullableDisplayValue(Model.Tblpoint.DropServiceMonths)</td>
+            </tr>
+            <tr>
+                <td>سنوات الخدمة المنقطعة</td>
+                 <td>@GetNullableDisplayValue(Model.Tblpoint.DropServiceYears)</td>
+            </tr>
+            <tr>
+                <td>هل الموظف او زوجه مستلم قطعة ارض سابقا (مستفيد)</td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.EmployeeRecivedLand, "Gender")</td>
+            </tr>
+            <tr>
+                <td>اسم مكان العمل</td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.WorkPlaceName)</td>
+            </tr>
+            <tr>
+                <td>تابعة الى</td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.WorkPlaceAddTo.WorkPlaceAddTo)</td>
+            </tr>
+            <tr>
+                <td>تاريخ التولد</td>
+                
+                <td>@Model.Tbluserdatum.BirthDate?.ToString("yyyy/MM/dd")</td>
+            </tr>
+            <tr>
+                <td>العمر </td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.Age)</td>
+            </tr>
+            <tr>
+                <td>تاريخ التعيين او المباشرة</td>
+                <td>@Model.Tbluserdatum.StartDate?.ToString("yyyy/MM/dd")</td>
+            </tr>
+            <tr>
+                <td>هل الموظف من ذوي الاحتياجات الخاصة</td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.SpecialNeeds, "Gender")</td>
+            </tr>
+            <tr>
+                <td>نسبة العجز</td>
+                <td>@GetNullableDisplayValue(Model.Tbluserdatum.DisabilityPercent)</td>
+            </tr> *@
+            <tr>
+                <td>رقم الهاتف</td>
+                <td>@Html.DisplayFor(model => model.Tbluserdatum.PhoneNumber)</td>
+            </tr>
+
+         </tbody>
+    </table>
+    </div>
+  
+
+
+}
+ @* @if (Model.Tbluserdatum != null)
+{
+<div class="col-md-12 mt-4">
+    <div class="card shadow shadow-lg">
+        <div class="card-body pt-4 p-3">
+            <div class="my-1 p-4 mb-2 ">
+                <form method="post">
+                   
+                    <div class="form-group input-group-outline">
+                        <label class="control-label lab mb-2 fs-5 text-dark font-weight-bold">تدقيق الاستمارة</label>
+                        <div class="row">
+                            <div class="co-12 my-1">
+                                <div class="form-group">
+                                    <label asp-for="Tbluserdatum.AuditedOrNot" class="control-label lab text-dark text-bolder mb-2">هل الاستمارة مدققة</label>
+                                    <select asp-for="Tbluserdatum.AuditedOrNot" class="form-control custom-select text-dark text-bolder border border-dark">
+                                        <option hidden>  </option>
+                                        <option value="1"> نعم</option>
+                                        <option value="2"> كلا</option>
+                                    </select>
+                                    <span asp-validation-for="Tbluserdatum.AuditedOrNot" class="text-danger" class="required-warning"></span>
+
+                                </div>
+                            </div>
+                            <div class="co-12 my-1">
+                                <div class="form-group">
+                                    <label asp-for="Tbluserdatum.Notee" class="control-label lab text-dark text-bolder mb-2">ملاحظات</label>
+                                    <textarea asp-for="Tbluserdatum.Notee" cols="30" rows="4" class="form-control p-2 border border-dark text-dark text-bolder" placeholder="يرجى كتابة ملاحظات هنا في حالة كون الاستمارة غير مدققة ..."></textarea>
+                                    <span asp-validation-for="Tbluserdatum.Notee" class="text-danger" class="required-warning"></span>
+                                </div>
+                            </div>
+                             <label class="control-label lab text-dark text-bolder mb-2">اسم مدقق الاستمارة: @Model.Tbluserdatum.AuditName</label>
+                             <input type="hidden" asp-for="Tbluserdatum.AuditName" /> 
+                            <div class="col-md-2 my-1">
+                                <button type="submit" class="btn btn-info w-75 fs-6">حفظ</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+            @{
+                if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success text-white font-weight-bold w-25 mt-3" id="successAlert">
+                        @TempData["SuccessMessage"]
+                    </div>
+
+                }
+                @if (Model.SearchResultMessage != null)
+                {
+                    <div class="alert alert-info mt-2">
+                        @Model.SearchResultMessage
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
+}  *@
+
+<script>
+    document.getElementById("scanQrCode").addEventListener("click", function () {
+        const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+            // Set the scanned result to the input field
+            document.getElementById("encryptedInput").value = decodedText;
+
+            // Stop the scanner after successful scan
+            html5QrcodeScanner.clear();
+        };
+
+        const qrCodeErrorCallback = (errorMessage) => {
+            // Handle scan error, if necessary
+            console.log(`QR Code Scan Error: ${errorMessage}`);
+        };
+
+        const html5QrcodeScanner = new Html5QrcodeScanner(
+            "qr-reader",
+            { fps: 10, qrbox: 500 }
+        );
+
+        html5QrcodeScanner.render(qrCodeSuccessCallback, qrCodeErrorCallback);
+    });
+</script>

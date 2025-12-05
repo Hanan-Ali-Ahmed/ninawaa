@@ -1,0 +1,418 @@
+﻿@page
+@model Ninwa_Employee.Pages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tbluserdatum</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.UserId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.UserId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.FullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.SecondName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.SecondName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.ThirdName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.ThirdName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Tittle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Tittle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.BirthDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.BirthDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.MotherFullName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.MotherFullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.NumberOfWives)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.NumberOfWives)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.PersonalCardNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.PersonalCardNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.NationalityNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.NationalityNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.NewspaperNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.NewspaperNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.RegistrationNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.RegistrationNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Judic)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Judic)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Side)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Side)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.City)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.WorkName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.WorkName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.UnitSchoole)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.UnitSchoole)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.University)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.University)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.College)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.College)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Specialization)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Specialization)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Countrystudy)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Countrystudy)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Gradyear)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Gradyear)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.CountcertificateId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.CountcertificateId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.LastcertificDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.LastcertificDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.HiringDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.HiringDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.DropId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.DropId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.DropDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.DropDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Startafterdrop)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Startafterdrop)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.BookNumReturnHiring)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.BookNumReturnHiring)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.DateBookReturnHiring)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.DateBookReturnHiring)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.AddId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.AddId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.AddType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.AddType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.AddDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.AddDays)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.AddMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.AddMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.AddYears)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.AddYears)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.vacationMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.vacationMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.vacationYears)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.vacationYears)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.BreakupDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.BreakupDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.MartyrsId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.MartyrsId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.NumberBookMartyrs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.NumberBookMartyrs)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.DateBookMartyrs)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.DateBookMartyrs)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.ChapterId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.ChapterId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.ChapterDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.ChapterDays)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.ChapterMonths)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.ChapterMonths)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.ChapterYears)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.ChapterYears)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.NumberBookChapter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.NumberBookChapter)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.DateBookChapter)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.DateBookChapter)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Notee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Notee)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.CreatedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.CreatedAt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.UpdatedAt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.UpdatedAt)
+        </dd>
+        @* <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.answer)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.answer.Id)
+        </dd> *@
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Certificate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Certificate.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Certificate2)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Certificate2.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Certificate3)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Certificate3.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.empposition)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.empposition.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.Gender)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.Gender.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.MaritalStatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.MaritalStatus.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.empstatus)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.empstatus.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.empparts)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.empparts.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.scientifictitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.scientifictitle.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tbluserdatum.vacation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tbluserdatum.vacation.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Tbluserdatum.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

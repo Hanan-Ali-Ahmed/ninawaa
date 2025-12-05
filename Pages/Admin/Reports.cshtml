@@ -1,0 +1,371 @@
+﻿@page
+@model Ninwa_Employee.Pages.Admin.ReportsModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title2"] = "التقارير";
+}
+<h1>التقارير</h1>
+<form method="get">
+    <div class="row">
+        <div class="d-flex gap-1 flex-nowrap">
+            <div class="col-11">
+                <input type="text" name="searchTerm" class="form-control p-2 border border-dark" id="searchInput" placeholder="ابحث هنا عن اسم المستخدم ...." />
+            </div>
+            <div class="col-md-1">
+                <button type="submit" class="btn btn-info w-100  ">بحث</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div style="max-height:500px; overflow-y: auto;" id="tableContainer">
+   
+    <table id="calculatorPointsTable" class=" tbl text-center table-bordered border-secondary table-bordered font-weight-bolder text-dark w-100">
+        <thead class="font-weight-bolder">
+            <tr class="font-weight-bolder">
+                <th>
+                 الرقم الوظيفي
+                </th>
+                <th>
+                الاسم الرباعي واللقب
+            </th>
+            <th>
+                الاسم
+            </th>
+            <th>
+                اسم الاب
+            </th>
+            <th>
+                اسم الجد
+            </th>
+            <th>
+                اسم والد الجد
+            </th>
+            <th>
+                اللقب
+            </th>
+            <th>
+                الجنس
+            </th>
+            <th>
+                تاريخ الميلاد
+            </th>
+            <th>
+                اسم الام الثلاثي
+            </th>
+            <th>
+                الحالة الاجتماعية
+            </th>
+            <th>
+               عدد الزوجات
+            </th>
+             <th>
+               اسم الزوج /الزوجة (1) الرباعي
+            </th>
+            <th>
+                اسم الزوج /الزوجة (2) الرباعي
+            </th>
+            <th>
+                اسم الزوج /الزوجة (3) الرباعي
+            </th>
+            <th>
+                اسم الزوج /الزوجة (4) الرباعي
+
+            </th>
+            <th>
+                هل لديك بطاقة وطنية ؟
+            </th>
+            <th>
+                رقم البطاقة الوطنية
+            </th>
+            <th>
+                رقم الجنسية
+            </th>
+            <th>
+                رقم الصحيفة
+            </th>
+            <th>
+                رقم السجل
+            </th>
+             <th>
+                 المحافظة
+             </th>
+            <th>
+                القضاء
+            </th>
+            <th>
+                الناحية
+            </th>
+            <th>
+                حي /القرية
+            </th>
+            <th>
+                رقم الهاتف
+            </th>
+            <th>
+                العنوان الوظيفي
+            </th>
+            <th>
+                القسم
+            </th>
+            <th>
+                الشعبة/الوحدة/المدرسة
+            </th>
+            <th>
+                المنصب الاداري
+            </th>
+            <th>
+                التحصيل الدراسي
+            </th>
+            <th>
+                الجامعة
+            </th>
+            <th>
+                الكلية / المعهد
+            </th>
+            <th>
+                الاختصاص الدقيق
+            </th>
+            <th>
+                بلد الدراسة
+            </th>
+            <th>
+                سنة الدراسة
+            </th>
+            <th>
+                الشهادة المعين بها
+            </th>
+            <th>
+                هل لديك شهادة محتسبة مضافة بعد التعيين
+            </th>
+            <th>
+                اخر شهادة محتسبة تم الحصول عليها
+            </th>
+            <th>
+                تاريخ اخر شهادة محتسبة تم الحصول عليها
+            </th>
+            <th>
+                اللقب العلمي ان وجد
+            </th>
+            <th>
+                تاريخ التعيين
+            </th>
+            <th>
+                تاريخ المباشرة لاول مره
+            </th>
+            <th>
+                هل لديك انقطاع؟
+            </th>
+            <th>
+                تاريخ الانقطاع
+            </th>
+            <th>
+                تاريخ المباشرة بعد الانقطاع
+            </th>
+            <th>
+                رقم كتاب اعادة التعيين
+            </th>
+            <th>
+                تاريخ كتاب اعادة التعيين
+            </th>
+            <th>
+                هل لديك خدمة مضافة ؟
+            </th>
+            <th>
+                نوع الخدمة المضافة
+            </th>
+            <th>
+                ايام الخدمة المضافة
+            </th>
+            <th>
+                اشهر الخدمة المضافة
+            </th>
+            <th>
+                سنوات الخدمة المضافة
+            </th>
+            <th>
+                الحالة الوظيفية
+            </th>
+            <th>
+                نوع الاجازة الطويلة المتمع بها حالياً
+            </th>
+            <th>
+                اشهر الاجازة
+            </th>
+            <th>
+                سنوات الاجازة
+            </th>
+            <th>
+                تاريخ الانفكاك للتمتع بالاجازة
+            </th>
+            <th>
+                هل الموظف من ذوي الشهداء؟
+            </th>
+            <th>
+                رقم كتاب مؤسسة الشهداء/رقم هوية ذوي الشهداء
+            </th>
+            <th>
+                تاريخ كتاب مؤسسة الشهداء/تاريخ صدور هوية ذوي الشهداء
+
+            </th>
+            <th>
+                هل لديك فصل سياسي؟
+            </th>
+            <th>
+                ايام الفصل
+            </th>
+            <th>
+                اشهر الفصل
+            </th>
+            <th>
+                سنوات الفصل
+            </th>
+            <th>
+                رقم امر الفصل
+            </th>
+            <th>
+                تاريخ امر الفصل
+            </th>
+            <th>
+                الملاحظات
+            </th>
+            <th>
+                تاريخ اخر تحديث
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+        <tbody class="table-group-divider" id="tableBody">
+            @foreach (var item in Model.Tbluserdatum)
+            {
+                <tr data-userid="@item.UserId">
+                    <td>@Html.DisplayFor(modelItem => item.UserName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SecondName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ThirdName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tittle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Gender.Gender)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MotherFullName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.MaritalStatus.MaritalStatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NumberOfWives)</td>
+
+                    @foreach (var wife in Model.Tblwifesname.Where(w => w.UserId == item.UserId))
+                    {
+                        <td>@Html.DisplayFor(modelItem => wife.WifesName)</td>
+                    }
+
+                    <td>@Html.DisplayFor(modelItem => item.answer1.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PersonalCardNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NationalityNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NewspaperNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RegistrationNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Gover)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Judic)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Side)</td>
+                    <td>@Html.DisplayFor(modelItem => item.City)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+                    <td>@Html.DisplayFor(modelItem => item.WorkName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.empparts.empparts)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UnitSchoole)</td>
+                    <td>@Html.DisplayFor(modelItem => item.empposition.empposition)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Certificate.CertificateType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.University)</td>
+                    <td>@Html.DisplayFor(modelItem => item.College)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Specialization)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Countrystudy)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Gradyear)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Certificate2.CertificateType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.answer2.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Certificate3.CertificateType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastcertificDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.scientifictitle.scientifictitle)</td>
+                    <td>@Html.DisplayFor(modelItem => item.HiringDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.StartDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.answer3.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DropDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Startafterdrop)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BookNumReturnHiring)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateBookReturnHiring)</td>
+                    <td>@Html.DisplayFor(modelItem => item.answer4.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AddType)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AddDays)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AddMonths)</td>
+                    <td>@Html.DisplayFor(modelItem => item.AddYears)</td>
+                    <td>@Html.DisplayFor(modelItem => item.empstatus.empstatus)</td>
+                    <td>@Html.DisplayFor(modelItem => item.vacation.vacation)</td>
+                    <td>@Html.DisplayFor(modelItem => item.vacationMonths)</td>
+                    <td>@Html.DisplayFor(modelItem => item.vacationYears)</td>
+                    <td>@Html.DisplayFor(modelItem => item.BreakupDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.answer5.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NumberBookMartyrs)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateBookMartyrs)</td>
+                    <td>@Html.DisplayFor(modelItem => item.answer6.answer)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChapterDays)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChapterMonths)</td>
+                    <td>@Html.DisplayFor(modelItem => item.ChapterYears)</td>
+                    <td>@Html.DisplayFor(modelItem => item.NumberBookChapter)</td>
+                    <td>@Html.DisplayFor(modelItem => item.DateBookChapter)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Notee)</td>
+                    <td>@Html.DisplayFor(modelItem => item.UpdatedAt)</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+<button type="button" class="btn btn-primary mt-3" onclick="exportToExcel()">تصدير إلى Excel</button>
+
+
+<button id="loadMoreBtn" class="btn btn-primary mt-3">تحميل المزيد</button>
+<button id="loadAllBtn" class="btn btn-success mt-3">تحميل الكل</button>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <!-- تصدير Excel -->
+  
+    <script src="~/js/xlsx.full.min.js"></script>
+    <script>
+        function exportToExcel() {
+            var wb = XLSX.utils.book_new();
+            var ws = XLSX.utils.table_to_sheet(document.getElementById('calculatorPointsTable'));
+            XLSX.utils.book_append_sheet(wb, ws, 'تقارير ');
+            XLSX.writeFile(wb, 'تقارير.xlsx');
+        }
+    </script>
+
+          @* // Lazy Loading *@
+    <script>
+        $(document).ready(function() {
+             var lastUserId = '@Model.LastUserId';
+
+             // Lazy Loading
+             $('#loadMoreBtn').click(function () {
+                 $.get('@Url.Page("Reports")', { lastUserId: lastUserId }, function (data) {
+                     var newRows = $(data).find('#tableBody tr');
+                     if (newRows.length > 0) {
+                         $('#tableBody').append(newRows);
+                         lastUserId = $(newRows[newRows.length - 1]).data('userid');
+                     } else {
+                         $('#loadMoreBtn').prop('disabled', true).text('تم تحميل كل البيانات');
+                     }
+                 });
+             });
+
+             // تحميل الكل
+             $('#loadAllBtn').click(function () {
+                 $.get('@Url.Page("Reports")', { loadAll: true }, function (data) {
+                     var allRows = $(data).find('#tableBody tr');
+                     if (allRows.length > 0) {
+                         $('#tableBody').html(allRows);
+                         $('#loadMoreBtn').prop('disabled', true).text('تم تحميل كل البيانات');
+                         $('#loadAllBtn').prop('disabled', true);
+                     }
+                 });
+             });
+         });
+    </script>
+
+

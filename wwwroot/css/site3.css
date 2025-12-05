@@ -1,0 +1,178 @@
+﻿﻿@import url('site.css');
+
+html {
+   font-size: 16px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    overflow : hidden;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: #dce8f5 !important;
+}
+
+.form-group {
+   /* width: 100% !important;
+    height: 20% !important;*/
+}
+
+.form-control {
+    background-color: #e7eef6 !important;
+    padding: 8px !important;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    height: 7vh !important;
+}
+
+.form-check-input {
+    float: right !important;
+    width: 25px;
+    height: 20px;
+    background-color: #e7eef6 !important;
+}
+
+input:disabled,
+select:disabled {
+    background-color: #b5b7b5 !important;
+}
+
+.custom-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right center;
+    background-size: 18px 18px;
+    padding-right: 30px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    height: 7vh !important;
+    font-size: 16px;
+    color: black !important;
+    padding-right: 1.8rem !important;
+}
+
+label {
+    font-size: 12px !important;
+    font-weight: bold !important;
+    color: black !important;
+}
+
+.form-check-input {
+    background-color: #e91e63 !important;
+}
+
+    .form-check-input:checked {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+        .form-check-input:checked::before {
+            content: "\2713"; /* علامة الصح */
+            color: white;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.875em;
+        }
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:after {
+    width: none !important;
+    height: none !important;
+    color: none !important;
+    content: none !important;
+}
+
+td {
+    font-size: 10px !important;
+    padding: 5px !important;
+}
+
+
+.btn {
+    /*font-size: 1.5vw;
+    padding: 0.5em 1em;*/
+}
+
+@media (max-width: 768px) {
+    /*.btn {
+        font-size: 1.2em;
+    }*/
+}
+
+@media (max-width: 576px) {
+    .btn {
+        font-size: 1em;
+    }
+}
+
+.tbl {
+    position: relative;
+}
+
+input::placeholder {
+    font-size: 16px;
+    color: #344767 !important;
+}
+
+.watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60vw;
+    height: 85vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.2;
+    z-index: 1;
+}
+
+@media print {
+    #qrcode {
+        page-break-before: always !important;
+        display: block !important;
+        z-index: 2;
+        margin-top: 200px;
+    }
+
+    .watermark {
+        display: block;
+        position: absolute;
+        top: 30%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 60vw;
+        height: 85vh;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        opacity: 0.1;
+        z-index: 1;
+    }
+}
+
+#qrcode {
+    display: none;
+}
+

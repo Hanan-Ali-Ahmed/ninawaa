@@ -1,0 +1,962 @@
+﻿@page
+@model Ninwa_Employee.Pages.User.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<link href="~/css/site.css" rel="stylesheet" />
+
+<div class="container bg-white font-weight-bolder text-dark w-100 p-4 rounded border-radius-l shadow  my-3">
+    <form method="post" class="font-weight-bolder text-dark mt-4 ">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="row">
+            <div class="col-lg-8  px-3 col-md-12 col-sm-12 my-1">
+
+                <h2>استمارة التقديم</h2>
+
+            </div>
+            <div class="me-auto my-1 bg-warning pt-2 rounded d-flex justify-content-center align-content-center text-white font-weight-bold w-100 w-md-50 w-lg-25">
+                <p class="text-center">
+                    <strong>عدد المرات التي يحق لك فيها<br />التعديل على استمارتك هو: @Model.DisplayNumberOfEdit</strong>
+                </p>
+            </div>
+            @{
+                if (TempData["msg"] != null)
+                {
+                        <div class="alert alert-danger text-white font-weight-bold  ">
+                            @TempData["msg"]
+                        </div>
+                }
+            }
+            <input type="hidden" asp-for="Tbluserdatum.Id" />
+            <input asp-for="Tbluserdatum.UserId" type="hidden" />
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label asp-for="Tbluserdatum.UserName" class="control-label">الرقم الوظيفي</label>
+                <input asp-for="Tbluserdatum.UserName" class="form-control" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">الاسم الرباعي واللقب</label>
+                <input asp-for="Tbluserdatum.FullName" class="form-control" />
+            </div>
+
+
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الاسم </label>
+                <input asp-for="Tbluserdatum.FirstName" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الاب</label>
+                <input asp-for="Tbluserdatum.SecondName" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الجد</label>
+                <input asp-for="Tbluserdatum.ThirdName" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم والد الجد</label>
+                <input asp-for="Tbluserdatum.LastName" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اللقب</label>
+                <input asp-for="Tbluserdatum.Tittle" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الجنس</label>
+                <select asp-for="Tbluserdatum.GenderId" class="form-control" asp-items="ViewBag.GenderId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ الميلاد</label>
+                <input asp-for="Tbluserdatum.BirthDate" class="form-control" type="date" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اسم الام الثلاثي</label>
+                <input asp-for="Tbluserdatum.MotherFullName" class="form-control" required />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الحالة الاجتماعية</label>
+                <select asp-for="Tbluserdatum.MaritalStatusId" class="form-control" asp-items="ViewBag.MaritalStatusId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="Tbluserdatum.NumberOfWives" class="control-label mb-2">عدد الزوجات </label>
+                <select asp-for="Tbluserdatum.NumberOfWives" class="form-control text-dark text-bolder  custom-select" id="NumberOfWives" required>
+                    <option hidden> </option>
+                    <option value="1"> 1</option>
+                    <option value="2"> 2</option>
+                    <option value="3"> 3</option>
+                    <option value="4"> 4</option>
+                </select>
+                <span asp-validation-for="Tbluserdatum.NumberOfWives" class="text-danger" class="required-warning"></span>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="FirstWife" class="control-label mb-2">اسم الزوج /الزوجة 1 (الرباعي)</label>
+                <input type="text" asp-for="FirstWife" class="form-control text-dark text-bolder" id="FirstWife" required />
+                <span asp-validation-for="FirstWife" class="text-danger required-warning"></span>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="SecondWife" class="control-label mb-2">اسم الزوجة 2 (الرباعي)</label>
+                <input type="text" asp-for="SecondWife" class="form-control  text-dark text-bolder" id="SecondWife" required />
+                <span asp-validation-for="SecondWife" class="text-danger required-warning"></span>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="ThirdWife" class="control-label mb-2">اسم الزوجة  3 (الرباعي)</label>
+                <input type="text" asp-for="ThirdWife" class="form-control  text-dark text-bolder" id="thirdWife" required />
+                <span asp-validation-for="ThirdWife" class="text-danger required-warning"></span>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="FourthWife" class="control-label mb-2">اسم الزوجة  4 (الرباعي)</label>
+                <input type="text" asp-for="FourthWife" class="form-control  text-dark text-bolder" id="FourthWife" required />
+                <span asp-validation-for="FourthWife" class="text-danger required-warning"></span>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك بطاقة وطنية ؟</label>
+                <select asp-for="Tbluserdatum.AnswerId" class="form-control" asp-items="ViewBag.AnswerId" required>
+                    <option hidden></option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">رقم البطاقة الوطنية</label>
+                <input asp-for="Tbluserdatum.PersonalCardNumber"
+                       class="form-control"
+                       type="text"
+                       id="personalCardInput"
+                       placeholder="الحد الاقصى 12 رقم"
+                       maxlength="12" />
+                <small id="personalCardError" class="text-danger"></small>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم الجنسية</label>
+                <input asp-for="Tbluserdatum.NationalityNumber" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم الصحيفة</label>
+                <input asp-for="Tbluserdatum.NewspaperNumber" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم السجل</label>
+                <input asp-for="Tbluserdatum.RegistrationNumber" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">المحافظة</label>
+                <input asp-for="Tbluserdatum.Gover" class="form-control" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">القضاء</label>
+                <input asp-for="Tbluserdatum.Judic" class="form-control" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الناحية</label>
+                <input asp-for="Tbluserdatum.Side" class="form-control" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">حي /القرية</label>
+                <input asp-for="Tbluserdatum.City" class="form-control" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label asp-for="Tbluserdatum.PhoneNumber" class="control-label mb-2">رقم الهاتف (فعال)</label>
+                <input type="text" asp-for="Tbluserdatum.PhoneNumber" class="form-control text-dark text-bolder" id="phoneNumberInput" required />
+                <span asp-validation-for="Tbluserdatum.PhoneNumber" class="text-danger" id="phoneError"></span>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>required
+                <label class="control-label">العنوان الوظيفي</label>
+                <input asp-for="Tbluserdatum.WorkName" class="form-control" />
+
+            </div><div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">القسم</label>
+                <select asp-for="Tbluserdatum.EmppartsId" class="form-control" asp-items="ViewBag.EmppartsId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الشعبة/الوحدة/المدرسة</label>
+                <input asp-for="Tbluserdatum.UnitSchoole" class="form-control" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">المنصب الاداري</label>
+                <select asp-for="Tbluserdatum.EmppositionId" class="form-control" asp-items="ViewBag.EmppositionId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">التحصيل الدراسي</label>
+                <select asp-for="Tbluserdatum.CertificateId" class="form-control" asp-items="ViewBag.CertificateId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">الجامعة</label>
+                <input asp-for="Tbluserdatum.University" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">الكلية / المعهد</label>
+                <input asp-for="Tbluserdatum.College" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">الاختصاص الدقيق</label>
+                <input asp-for="Tbluserdatum.Specialization" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">بلد الدراسة</label>
+                <input asp-for="Tbluserdatum.Countrystudy" class="form-control" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">سنة التخرج</label>
+                <input asp-for="Tbluserdatum.Gradyear" class="form-control" placeholder="ًمثلا 2020/2021" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الشهادة المعين بها</label>
+                <select asp-for="Tbluserdatum.CertificateId2" class="form-control" asp-items="ViewBag.CertificateId2" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك شهادة محتسبة مضافة بعد التعيين</label>
+                <select asp-for="Tbluserdatum.CountcertificateId" class="form-control" asp-items="ViewBag.CountcertificateId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اخر شهادة محتسبة تم الحصول عليها</label>
+                <select asp-for="Tbluserdatum.CertificateId3" class="form-control" asp-items="ViewBag.CertificateId3">
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">تاريخ اخر شهادة محتسبة تم الحصول عليها</label>
+                <input asp-for="Tbluserdatum.LastcertificDate" class="form-control" type="date" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">اللقب العلمي ان وجد</label>
+                <select asp-for="Tbluserdatum.scientifictitleId" class="form-control" asp-items="ViewBag.scientifictitleId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ التعيين</label>
+                <input asp-for="Tbluserdatum.HiringDate" class="form-control" type="date" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">تاريخ المباشرة لاول مره</label>
+                <input asp-for="Tbluserdatum.StartDate" class="form-control" type="date" required />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل لديك انقطاع؟</label>
+                <select asp-for="Tbluserdatum.DropId" class="form-control" asp-items="ViewBag.DropId" required>
+                    <option hidden>  </option>
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1>
+                <label class="control-label">تاريخ الانقطاع</label>
+                <input asp-for="Tbluserdatum.DropDate" class="form-control" type="date" />
+
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">تاريخ المباشرة بعد الانقطاع</label>
+                <input asp-for="Tbluserdatum.Startafterdrop" class="form-control" type="date" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم كتاب اعادة التعيين</label>
+                <input asp-for="Tbluserdatum.BookNumReturnHiring" class="form-control" type="number" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">تاريخ كتاب اعادة التعيين</label>
+                <input asp-for="Tbluserdatum.DateBookReturnHiring" class="form-control" type="date" />
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">هل لديك خدمة مضافة ؟</label>
+                <select asp-for="Tbluserdatum.AddId" class="form-control" asp-items="ViewBag.AddId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">نوع الخدمة المضافة</label>
+                <input asp-for="Tbluserdatum.AddType" class="form-control" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">ايام الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddDays" class="form-control text-dark text-bolder  custom-select" id="AddDays" required>
+                    <option hidden> يوم</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 29; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">اشهر الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddMonths" class="form-control text-dark text-bolder  custom-select" id="AddMonths" required>
+                    <option hidden>اشهر</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">سنوات الخدمة المضافة</label>
+                <select asp-for="Tbluserdatum.AddYears" class="form-control text-dark text-bolder  custom-select" id="AddYears" required>
+                    <option hidden> سنة</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 30; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">الحالة الوظيفية</label>
+                <select asp-for="Tbluserdatum.EmpstatusId" class="form-control" asp-items="ViewBag.EmpstatusId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">نوع الاجازة الطويلة المتمع بها حالياً</label>
+                <select asp-for="Tbluserdatum.vacationId" class="form-control" asp-items="ViewBag.vacationId">
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label"> اشهر الاجازة</label>
+                <input asp-for="Tbluserdatum.vacationMonths" class="form-control" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">سنوات الاجازة</label>
+                <input asp-for="Tbluserdatum.vacationYears" class="form-control" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">تاريخ الانفكاك للتمتع بالاجازة</label>
+                <input asp-for="Tbluserdatum.BreakupDate" class="form-control" type="date" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <span class="text-danger">*</span>
+                <label class="control-label">هل الموظف من ذوي الشهداء؟</label>
+                <select asp-for="Tbluserdatum.MartyrsId" class="form-control" asp-items="ViewBag.MartyrsId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم كتاب مؤسسة الشهداء/رقم هوية ذوي الشهداء </label>
+                <input asp-for="Tbluserdatum.NumberBookMartyrs" class="form-control" type="number" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label"> تاريخ كتاب مؤسسة الشهداء/تاريخ صدور هوية ذوي الشهداء</label>
+                <input asp-for="Tbluserdatum.DateBookMartyrs" class="form-control" type="date" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">هل لديك فصل سياسي؟</label>
+                <select asp-for="Tbluserdatum.ChapterId" class="form-control" asp-items="ViewBag.ChapterId" required>
+                    <option hidden>  </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">ايام الفصل</label>
+
+                <select asp-for="Tbluserdatum.ChapterDays" class="form-control text-dark text-bolder  custom-select" id="ChapterDays" required>
+                    <option hidden> يوم</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 29; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">اشهر الفصل</label>
+                <select asp-for="Tbluserdatum.ChapterMonths" class="form-control text-dark text-bolder  custom-select" id="ChapterMonths" required>
+                    <option hidden> شهر</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 11; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">سنوات الفصل</label>
+                <select asp-for="Tbluserdatum.ChapterYears" class="form-control text-dark text-bolder  custom-select" id="ChapterYears" required>
+                    <option hidden> سنة</option>
+                    <option value="0"> لايوجد</option>
+                    @for (int i = 1; i <= 30; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">رقم امر الفصل</label>
+                <input asp-for="Tbluserdatum.NumberBookChapter" class="form-control" type="number" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">تاريخ امر الفصل</label>
+                <input asp-for="Tbluserdatum.DateBookChapter" class="form-control" type="date" />
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <label class="control-label">الملاحظات</label>
+                <input type="text" asp-for="Tbluserdatum.Notee" id="noteInput" class="form-control" placeholder="حد أقصى 100 أحرف" maxlength="100" />
+                <small id="noteError" class="text-danger"></small>
+                <small id="noteCount" class="text-muted"></small>
+            </div>
+            <div class="col-md-6 col-sm-12  my-1">
+                <input type="checkbox" asp-for="Tbluserdatum.answer" class="form-check-input" id="pledgeCheckbox" required />
+                <label for="pledgeCheckbox" class="form-check-label mx-2">
+                    اتعهد بصحة كافة البيانات المرسلة واتحمل المسؤولية كاملة خلاف ذلك
+                </label>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="ارسال" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+</div>
+
+<script src="~/js/site.js"></script>
+
+    <script>
+        // ✅✅✅✅✅✅✅  الجنس والحالة الاجتماعية وعدد الزوجات ////////////////////////
+
+        function filterMaritalStatus() {
+            const genderSelect = document.querySelector('[name="Tbluserdatum.GenderId"]');
+            const maritalSelect = document.querySelector('[name="Tbluserdatum.MaritalStatusId"]');
+            const numberOfWives = document.getElementById("NumberOfWives");
+            const firstWife = document.getElementById("FirstWife");
+            const secondWife = document.getElementById("SecondWife");
+            const thirdWife = document.getElementById("thirdWife");
+            const fourthWife = document.getElementById("FourthWife");
+
+            // حماية
+            if (!genderSelect || !maritalSelect || !numberOfWives) return;
+
+            const gender = genderSelect.value;
+            const maritalValue = maritalSelect.value;
+
+            // إظهار جميع خيارات الحالة الاجتماعية أولاً
+            for (let opt of maritalSelect.options) {
+                opt.style.display = "";
+            }
+
+            // Male = 1 → نخفي 2
+            if (gender === "1") {
+                const option = maritalSelect.querySelector('option[value="2"]');
+                if (option) option.style.display = "none";
+                if (maritalSelect.value === "2") maritalSelect.value = "";
+            }
+
+            // Female = 2 → نخفي 1
+            if (gender === "2") {
+                const option = maritalSelect.querySelector('option[value="1"]');
+                if (option) option.style.display = "none";
+                if (maritalSelect.value === "1") maritalSelect.value = "";
+            }
+
+            // إذا كانت الحالة الاجتماعية 1 أو 2 → تعطيل عدد الزوجات وحقول الأسماء
+            if (maritalValue === "1" || maritalValue === "2") {
+                numberOfWives.value = "";
+                numberOfWives.disabled = true;
+
+                if (firstWife) { firstWife.value = ""; firstWife.disabled = true; }
+                if (secondWife) { secondWife.value = ""; secondWife.disabled = true; }
+                if (thirdWife) { thirdWife.value = ""; thirdWife.disabled = true; }
+                if (fourthWife) { fourthWife.value = ""; fourthWife.disabled = true; }
+                return;
+            }
+
+            // خلاف ذلك نفعّل عدد الزوجات ونربط الحقول حسب القيمة
+            numberOfWives.disabled = false;
+
+            const wivesCount = parseInt(numberOfWives.value, 10) || 0;
+
+            const wives = [
+                { input: firstWife, index: 1 },
+                { input: secondWife, index: 2 },
+                { input: thirdWife, index: 3 },
+                { input: fourthWife, index: 4 }
+            ];
+
+            wives.forEach(wife => {
+                if (!wife.input) return;
+                if (wife.index <= wivesCount) {
+                    wife.input.disabled = false;
+                } else {
+                    wife.input.value = "";
+                    wife.input.disabled = true;
+                }
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const genderSelect = document.querySelector('[name="Tbluserdatum.GenderId"]');
+            const maritalSelect = document.querySelector('[name="Tbluserdatum.MaritalStatusId"]');
+            const numberOfWives = document.getElementById("NumberOfWives");
+
+            if (!genderSelect || !maritalSelect || !numberOfWives) {
+                console.error("Select elements not found");
+                return;
+            }
+
+            // أضف المستمعين هنا — numberOfWives معرف الآن
+            genderSelect.addEventListener("change", filterMaritalStatus);
+            maritalSelect.addEventListener("change", filterMaritalStatus);
+            numberOfWives.addEventListener("change", filterMaritalStatus);
+
+            // نفّذ مرة عند التحميل لتهيئة الحالة الصحيحة
+            filterMaritalStatus();
+        });
+    //////////////////////// البطاقة الموحده✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const answerSelect = document.querySelector('[name="Tbluserdatum.AnswerId"]');
+
+        const personalCard = document.getElementById("personalCardInput");
+        const nationality = document.querySelector('[name="Tbluserdatum.NationalityNumber"]');
+        const newspaper = document.querySelector('[name="Tbluserdatum.NewspaperNumber"]');
+        const registration = document.querySelector('[name="Tbluserdatum.RegistrationNumber"]');
+
+        function toggleNationalCardFields() {
+            if (!answerSelect) return;
+
+            const value = answerSelect.value;
+
+            // اذا نعم (1) → البطاقة الوطنية
+            if (value === "1") {
+                if (personalCard) personalCard.disabled = false;
+
+                if (nationality) { nationality.value = ""; nationality.disabled = true; }
+                if (newspaper) { newspaper.value = ""; newspaper.disabled = true; }
+                if (registration) { registration.value = ""; registration.disabled = true; }
+            }
+
+            // اذا لا (2) → رقم الجنسية + الصحيفة + السجل
+            else if (value === "2") {
+                if (personalCard) { personalCard.value = ""; personalCard.disabled = true; }
+
+                if (nationality) nationality.disabled = false;
+                if (newspaper) newspaper.disabled = false;
+                if (registration) registration.disabled = false;
+            }
+
+            // في حال لم يتم الاختيار
+            else {
+                if (personalCard) personalCard.disabled = true;
+                if (nationality) nationality.disabled = true;
+                if (newspaper) newspaper.disabled = true;
+                if (registration) registration.disabled = true;
+            }
+        }
+
+        // عند التغيير
+        if (answerSelect) {
+            answerSelect.addEventListener("change", toggleNationalCardFields);
+        }
+
+        // تشغيل أولي عند تحميل الصفحة
+        toggleNationalCardFields();
+    });
+
+
+    //////////////////////////// التحصيل الدراسي✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const certificateSelect = document.querySelector('[name="Tbluserdatum.CertificateId"]');
+
+            const university = document.querySelector('[name="Tbluserdatum.University"]');
+            const college = document.querySelector('[name="Tbluserdatum.College"]');
+            const specialization = document.querySelector('[name="Tbluserdatum.Specialization"]');
+            const countryStudy = document.querySelector('[name="Tbluserdatum.Countrystudy"]');
+            const gradYear = document.querySelector('[name="Tbluserdatum.Gradyear"]');
+
+            function toggleStudyFields() {
+                if (!certificateSelect) return;
+
+                const value = parseInt(certificateSelect.value);
+
+                const fields = [university, college, specialization, countryStudy, gradYear];
+
+                // من 6 الى 12 → تعطيل
+                if (value >= 6 && value <= 12) {
+                    fields.forEach(field => {
+                        if (field) {
+                            field.value = "";
+                            field.disabled = true;
+                        }
+                    });
+                }
+
+                // من 1 الى 5 → تفعيل
+                else if (value >= 1 && value <= 5) {
+                    fields.forEach(field => {
+                        if (field) {
+                            field.disabled = false;
+                        }
+                    });
+                }
+
+                // اذا لم يتم الاختيار
+                else {
+                    fields.forEach(field => {
+                        if (field) {
+                            field.disabled = true;
+                        }
+                    });
+                }
+            }
+
+            if (certificateSelect) {
+                certificateSelect.addEventListener("change", toggleStudyFields);
+            }
+
+            // تشغيل أولي
+            toggleStudyFields();
+
+        });
+
+    //  ✅✅✅✅✅✅✅✅✅✅✅✅✅✅هل لديك شهادة محتسبة مضافة بعد التعيين/////////////////////////
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const countCertificateSelect = document.querySelector('[name="Tbluserdatum.CountcertificateId"]');
+            const lastCertificateSelect = document.querySelector('[name="Tbluserdatum.CertificateId3"]');
+            const lastCertificateDate = document.querySelector('[name="Tbluserdatum.LastcertificDate"]');
+
+            function toggleLastCertificateFields() {
+                if (!countCertificateSelect) return;
+
+                const value = countCertificateSelect.value;
+
+                // اذا نعم (1) → تفعيل الحقول
+                if (value === "1") {
+                    if (lastCertificateSelect) lastCertificateSelect.disabled = false;
+                    if (lastCertificateDate) lastCertificateDate.disabled = false;
+                }
+
+                // اذا لا (2) → تعطيل الحقول وتفريغها
+                else if (value === "2") {
+                    if (lastCertificateSelect) { lastCertificateSelect.value = ""; lastCertificateSelect.disabled = true; }
+                    if (lastCertificateDate) { lastCertificateDate.value = ""; lastCertificateDate.disabled = true; }
+                }
+
+                // إذا لم يتم الاختيار
+                else {
+                    if (lastCertificateSelect) lastCertificateSelect.disabled = true;
+                    if (lastCertificateDate) lastCertificateDate.disabled = true;
+                }
+            }
+
+            if (countCertificateSelect) {
+                countCertificateSelect.addEventListener("change", toggleLastCertificateFields);
+            }
+
+            // تشغيل أولي عند تحميل الصفحة
+            toggleLastCertificateFields();
+
+        });
+    ////////////////  هل لديك انقطاع؟  /////////////////✅✅✅✅✅✅✅✅✅✅
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const dropSelect = document.querySelector('[name="Tbluserdatum.DropId"]');
+
+            const dropDate = document.querySelector('[name="Tbluserdatum.DropDate"]');
+            const startAfterDrop = document.querySelector('[name="Tbluserdatum.Startafterdrop"]');
+            const bookNumReturn = document.querySelector('[name="Tbluserdatum.BookNumReturnHiring"]');
+            const dateBookReturn = document.querySelector('[name="Tbluserdatum.DateBookReturnHiring"]');
+
+            function toggleDropFields() {
+                if (!dropSelect) return;
+
+                const value = dropSelect.value;
+
+                const fields = [dropDate, startAfterDrop, bookNumReturn, dateBookReturn];
+
+                if (value === "1") {
+                    // تفعيل جميع الحقول
+                    fields.forEach(f => {
+                        if (f) f.disabled = false;
+                    });
+                }
+                else if (value === "2") {
+                    // تعطيل وتفريغ القيم
+                    fields.forEach(f => {
+                        if (f) {
+                            f.value = "";
+                            f.disabled = true;
+                        }
+                    });
+                }
+                else {
+                    // إذا لم يتم الاختيار
+                    fields.forEach(f => {
+                        if (f) f.disabled = true;
+                    });
+                }
+            }
+
+            if (dropSelect) {
+                dropSelect.addEventListener("change", toggleDropFields);
+            }
+
+            // تشغيل عند تحميل الصفحة
+            toggleDropFields();
+        });
+
+
+    //////////////////////////////////هل لديك خدمة مضافة✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅✅
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const addSelect = document.querySelector('[name="Tbluserdatum.AddId"]');
+
+        const addType = document.querySelector('[name="Tbluserdatum.AddType"]');
+        const addDays = document.getElementById("AddDays");
+        const addMonths = document.getElementById("AddMonths");
+        const addYears = document.getElementById("AddYears");
+
+        function toggleAddFields() {
+            if (!addSelect) return;
+
+            const value = addSelect.value;
+
+            const fields = [addType, addDays, addMonths, addYears];
+
+            if (value === "1") {
+                // تفعيل جميع الحقول
+                fields.forEach(f => {
+                    if (f) f.disabled = false;
+                });
+            }
+            else if (value === "2") {
+                // تعطيل وتفريغ القيم
+                fields.forEach(f => {
+                    if (f) {
+                        if (f.tagName === "INPUT") f.value = "";
+                        else if (f.tagName === "SELECT") f.selectedIndex = 0;
+                        f.disabled = true;
+                    }
+                });
+            }
+            else {
+                // إذا لم يتم الاختيار
+                fields.forEach(f => {
+                    if (f) f.disabled = true;
+                });
+            }
+        }
+
+        if (addSelect) {
+            addSelect.addEventListener("change", toggleAddFields);
+        }
+
+        // تشغيل عند تحميل الصفحة
+        toggleAddFields();
+    });
+
+    //////////////////////////////// الحالة الوظيفية✅✅✅✅✅✅✅✅✅✅✅✅✅
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const empStatusSelect = document.querySelector('[name="Tbluserdatum.EmpstatusId"]');
+
+            const vacationId = document.querySelector('[name="Tbluserdatum.vacationId"]');
+            const vacationMonths = document.querySelector('[name="Tbluserdatum.vacationMonths"]');
+            const vacationYears = document.querySelector('[name="Tbluserdatum.vacationYears"]');
+            const breakupDate = document.querySelector('[name="Tbluserdatum.BreakupDate"]');
+
+            function toggleVacationFields() {
+                if (!empStatusSelect) return;
+
+                const value = empStatusSelect.value;
+
+                const fields = [vacationId, vacationMonths, vacationYears, breakupDate];
+
+                if (value === "2") {
+                    // تفعيل الحقول
+                    fields.forEach(f => {
+                        if (f) f.disabled = false;
+                    });
+                }
+                else {
+                    // تعطيل وتفريغ القيم
+                    fields.forEach(f => {
+                        if (f) {
+                            if (f.tagName === "INPUT") f.value = "";
+                            else if (f.tagName === "SELECT") f.selectedIndex = 0;
+                            f.disabled = true;
+                        }
+                    });
+                }
+            }
+
+            if (empStatusSelect) {
+                empStatusSelect.addEventListener("change", toggleVacationFields);
+            }
+
+            // تشغيل عند تحميل الصفحة
+            toggleVacationFields();
+        });
+
+    /////////////////////// هل الموظف من ذوي الشهداء؟////////✅✅✅✅✅✅✅✅✅✅✅✅
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const martyrsSelect = document.querySelector('[name="Tbluserdatum.MartyrsId"]');
+
+        const numberBookMartyrs = document.querySelector('[name="Tbluserdatum.NumberBookMartyrs"]');
+        const dateBookMartyrs = document.querySelector('[name="Tbluserdatum.DateBookMartyrs"]');
+
+        function toggleMartyrsFields() {
+            if (!martyrsSelect) return;
+
+            const value = martyrsSelect.value;
+
+            const fields = [numberBookMartyrs, dateBookMartyrs];
+
+            if (value === "1") {
+                // تفعيل الحقول
+                fields.forEach(f => {
+                    if (f) f.disabled = false;
+                });
+            }
+            else {
+                // تعطيل وتفريغ القيم
+                fields.forEach(f => {
+                    if (f) {
+                        if (f.tagName === "INPUT") f.value = "";
+                        else if (f.tagName === "SELECT") f.selectedIndex = 0;
+                        f.disabled = true;
+                    }
+                });
+            }
+        }
+
+        if (martyrsSelect) {
+            martyrsSelect.addEventListener("change", toggleMartyrsFields);
+        }
+
+        // تشغيل عند تحميل الصفحة
+        toggleMartyrsFields();
+    });
+    ///////////////////  هل لديك فصل سياسي //////////////د✅✅✅✅✅✅✅✅✅✅
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const chapterSelect = document.querySelector('[name="Tbluserdatum.ChapterId"]');
+
+        const chapterDays = document.getElementById("ChapterDays");
+        const chapterMonths = document.getElementById("ChapterMonths");
+        const chapterYears = document.getElementById("ChapterYears");
+        const numberBookChapter = document.querySelector('[name="Tbluserdatum.NumberBookChapter"]');
+        const dateBookChapter = document.querySelector('[name="Tbluserdatum.DateBookChapter"]');
+
+        function toggleChapterFields() {
+            if (!chapterSelect) return;
+
+            const value = chapterSelect.value;
+
+            const fields = [chapterDays, chapterMonths, chapterYears, numberBookChapter, dateBookChapter];
+
+            if (value === "1") {
+                // تفعيل الحقول
+                fields.forEach(f => {
+                    if (f) f.disabled = false;
+                });
+            }
+            else {
+                // تعطيل وتفريغ القيم
+                fields.forEach(f => {
+                    if (f) {
+                        if (f.tagName === "INPUT") f.value = "";
+                        else if (f.tagName === "SELECT") f.selectedIndex = 0;
+                        f.disabled = true;
+                    }
+                });
+            }
+        }
+
+        if (chapterSelect) {
+            chapterSelect.addEventListener("change", toggleChapterFields);
+        }
+
+        // تشغيل عند تحميل الصفحة
+        toggleChapterFields();
+    });
+</script>
+
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+
+
